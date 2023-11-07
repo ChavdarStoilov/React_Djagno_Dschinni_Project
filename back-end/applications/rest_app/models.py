@@ -12,37 +12,41 @@ class Product(models.Model):
     )
 
     normal_price = models.FloatField(
-        blank=True,
+        null=True,
+        blank=True
         
     )
     
     promo_price = models.FloatField(
-        blank=True,
+        null=True,
+        blank=True
         
     )
     
     descrition = models.TextField(
         blank=True,
-        max_length=255,
+        max_length=355,
     )
     
     counter_orders = models.IntegerField(
+        null=True,
         blank=True
     )
     
     technical_details = models.TextField(
-        max_length=255,
+        max_length=355,
         blank=True,
         
     )
     
     kit_scope = models.TextField(
-        max_length=255,
+        max_length=355,
         blank=True,
     )
     
     stock = models.IntegerField(
-        blank=True,
+        null=True,
+        blank=True
     )
 
 class CustomerComment(models.Model):
