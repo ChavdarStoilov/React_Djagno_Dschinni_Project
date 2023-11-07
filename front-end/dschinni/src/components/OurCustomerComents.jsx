@@ -1,4 +1,4 @@
-export default function OurClientsComnetars() {
+export default function OurClientsComments() {
   return (
     <div>
       <div class="customer_section layout_padding">

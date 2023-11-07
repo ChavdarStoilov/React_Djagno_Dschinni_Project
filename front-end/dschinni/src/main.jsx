@@ -1,11 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import HomePage from './homePage.jsx'
-// import Products from './assets/products.jsx'
-// import Contacts from './assets/contacts.jsx'
+import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-    <HomePage />
+    <App />
   //</React.StrictMode>,
 )
