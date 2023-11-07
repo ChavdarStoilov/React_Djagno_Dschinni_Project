@@ -1,6 +1,9 @@
+import logo from "../assets/logo.webp";
+
+
 export default function Footer() {
     return (
-        <div>
+        <>
             <div className="footer_section layout_padding">
                 <div className="container">
                     <div className="footer_logo">
@@ -53,19 +56,13 @@ export default function Footer() {
                             <div className="col-sm-4">
                                 <div className="footer_logo_1">
                                     <a href="index.html">
-                                        <img src="images/footer-logo.png" />
+                                        <img src={logo} />
                                     </a>
                                 </div>
-                                <p className="dummy_text">
-                                    commodo consequat. Duis aute irure dolor in
-                                    reprehenderit in voluptate velit esse cillum
-                                    dolore eu fugiat nulla pariatur. Excepteur
-                                    sint occaecat cupidatat non
-                                </p>
                             </div>
                             <div className="col-sm-4">
                                 <div className="main">
-                                    <h3 className="address_text">
+                                    <h3 className="assets/address_text">
                                         Best Products
                                     </h3>
                                     <p className="ipsum_text">
@@ -80,22 +77,22 @@ export default function Footer() {
                         <ul>
                             <li>
                                 <a href="#">
-                                    <i class="fab fa-facebook"></i>
+                                    <i className="fab fa-facebook"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="fab fa-twitter"></i>
+                                    <i className="fab fa-twitter"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="fab fa-linkedin-in"></i>
+                                    <i className="fab fa-linkedin-in"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="fab fa-instagram"></i>
+                                    <i className="fab fa-instagram"></i>
                                 </a>
                             </li>
                         </ul>
@@ -110,6 +107,6 @@ export default function Footer() {
                     </p>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

@@ -231,9 +231,10 @@ button {
 .header_section {
     width: 100%;
     float: left;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.7);
     height: auto;
     background-size: 100%;
+    border-radius: 20px;
 }
 
 .logo {
@@ -241,7 +242,7 @@ button {
 }
 
 .bg-light {
-    background-color: transparent!important;
+    background-color: unset !important; 
 }
 
 .toggle_icon {
@@ -342,35 +343,48 @@ button {
 
 .banner_section {
     width: 100%;
-    float: left;
-    background-image: url(../images/banner-bg.png);
+    background-image: url(../images/banner.webp);
     height: auto;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    padding: 120px 0px 90px;
+    height: 100vh;
 }
+
+.banner-inner {
+    background-color: rgba(191, 156, 189, 0.4);
+  
+  }
 
 .banner_taital {
     width: 100%;
     margin: 0 auto;
-    font-size: 100px;
+    font-size: 50px;
     color: #000;
     line-height: 90px;
     padding-top: 20px;
     font-family: 'Great Vibes', cursive;
 }
-
+.banner_price {
+    display: flex;
+    flex-direction: column;
+    width: 200px;  
+}
 .banner_text {
     width: 100%;
     float: left;
-    font-size: 16px;
+    font-size: 14px;
     color: #000;
     margin: 20px 0px;
 }
 
 .read_bt {
-    width: 170px;
+    width: 300px;
     float: left;
     padding-top: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .read_bt a {
@@ -400,6 +414,7 @@ button {
     width: 100%;
     float: left;
     padding-bottom: 90px;
+    height: 100vh;
 }
 
 .product_taital {
@@ -442,6 +457,7 @@ button {
     text-align: center;
     color: #1a1c1b;
     font-weight: 600;
+    height: 50px;
 }
 
 .lorem_text {
@@ -506,6 +522,17 @@ button {
     padding-top: 5px;
     text-align: right;
 }
+.old-price{ 
+    font-size:0.8em;  
+    text-decoration: line-through;  
+    color:grey;
+}
+.new-price{  
+    color:red; 
+    font-size:1.45em; 
+    line-height: 1.1; 
+}
+
 
 .seemore_bt {
     width: 170px;
@@ -535,12 +562,19 @@ button {
 
 
 /* about section start */
-
+.container {
+    width: 80%;
+    max-width: 80%;
+}
+.row {
+    align-items: center;
+}
 .about_section {
-    width: 100%;
-    float: left;
-    background-color: #fef4ec;
-    height: auto;
+    width: 100vw;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #e6e4e1;
+    height: 100vh;
     padding-bottom: 90px;
 }
 
@@ -574,8 +608,6 @@ button {
 }
 
 .image_3 {
-    width: 100%;
-    float: left;
     height: 430px;
 }
 
@@ -612,6 +644,7 @@ button {
 .customer_section {
     width: 100%;
     float: left;
+    height: 100vh;
     padding-bottom: 70px;
 }
 
@@ -808,9 +841,10 @@ button {
     width: 100%;
     float: left;
     background-color: #252525;
-    height: auto;
+    height: 50vh;
     background-size: 100%;
     padding-bottom: 30px;
+  
 }
 
 .footer_logo {

@@ -1,9 +1,7 @@
 import logo from "../assets/logo.webp";
-import { useState } from "react";
 
 export default function Navigation() {
     const [IsLoadMenu, setIsLoadMenu] = useState(false)
-
 
     const OnMenuHandler = () => {
         if (IsLoadMenu) {
@@ -20,7 +18,7 @@ export default function Navigation() {
 
 
     return (
-        <div className="header_section">
+        <div className="header_section" >
             <div className="container-fluid">
                 <nav className="navbar navbar-light bg-light justify-content-between">
                     { IsLoadMenu && 
