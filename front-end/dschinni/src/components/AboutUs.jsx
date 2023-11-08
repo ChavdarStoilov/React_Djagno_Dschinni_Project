@@ -20,13 +20,11 @@ export default function About() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6">
-                            <div>
+                        <div className="col-md-6 about_image">
                                 <img
                                     src="images/dschinniLogo.webp"
                                     className="image_3"
                                 />
-                            </div>
                         </div>
                     </div>
                 </div>

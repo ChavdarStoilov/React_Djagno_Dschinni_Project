@@ -607,6 +607,9 @@ button {
     margin: 0px;
 }
 
+.about_image {
+    text-align: center;
+}
 .image_3 {
     height: 430px;
 }

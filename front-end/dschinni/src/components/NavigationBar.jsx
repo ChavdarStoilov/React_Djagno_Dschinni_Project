@@ -1,4 +1,5 @@
 import logo from "../assets/logo.webp";
+import { useState } from "react";
 
 export default function Navigation() {
     const [IsLoadMenu, setIsLoadMenu] = useState(false)
