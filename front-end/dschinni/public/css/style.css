@@ -261,7 +261,11 @@ button {
 }
 
 .nav-link {
+    font-size: 18px;
     color: #dead44!important;
+}
+.nav-link:hover {
+    color: #f1c76c!important;
 }
 .sidenav a {
     padding: 4px 8px 4px 8px;
