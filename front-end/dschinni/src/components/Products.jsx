@@ -1,6 +1,8 @@
+import Transitions from "./Transition";
+
 export default function Products() {
     return (
-        <div>
+        <Transitions>
             <div className="product_section layout_padding">
                 <div className="container">
                     <div className="row">
@@ -358,6 +360,6 @@ export default function Products() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Transitions>
     );
 }

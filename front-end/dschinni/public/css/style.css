@@ -33,13 +33,10 @@
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
-* {
-    box-sizing: border-box !important;
-    transition: ease all 0.5s;
-}
 
 html {
     scroll-behavior: smooth;
+    overflow: hidden;
 }
 
 body {
@@ -536,6 +533,9 @@ button {
     line-height: 1.1; 
 }
 
+.modal-open {
+    padding-right: 0px!important;
+}
 
 .seemore_bt {
     width: 170px;

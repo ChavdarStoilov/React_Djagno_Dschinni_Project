@@ -1,66 +1,67 @@
 import logo from "../assets/logo.webp";
 import { useState } from "react";
-import { Link } from 'react-router-dom'
+import UserProfileModal from "./UserProfileModal";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 
 export default function Navigation() {
-    const [IsLoadMenu, setIsLoadMenu] = useState(false)
+    const [showUserModal, setShowUserModal] = useState(false);
 
-    const OnMenuHandler = () => {
-        if (IsLoadMenu) {
-            setIsLoadMenu(false);
-        }
-        else {
-            setIsLoadMenu(true);
-        }
-    }
-
-    const OnMenuClose = () => {
-        setIsLoadMenu(false);
-    }
-
+    const handleClose = () => setShowUserModal(false);
+    const handleShow = () => setShowUserModal(true);
 
     return (
-        <div className="header_section" >
-            <div className="container-fluid">
-                <nav className="navbar navbar-light bg-light justify-content-between">
-                    { IsLoadMenu && 
-                    <div id="mySidenav" className="sidenav">
-                        <a
-                            className="closebtn"
-                            onClick={OnMenuClose}
-                        >
-                            &times;
-                        </a>
-                        <Link to="/">Home</Link>
-                        <Link to="/products">Products</Link>
-                        {/* <Link to="/about">About</Link> */}
-                        <Link to="/contact">Contact</Link>
-                    </div>
-                    }
-                    <div className="toggle_icon">
-                        <i className="fas fa-bars"  onClick={OnMenuHandler}></i>
-                    </div>
-                    <div>
-                        <a className="logo" href="index.html">
-                            <img src={logo} className="logo" />
-                        </a>
-                    </div>
-                    <div className="login_text">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i className="fas fa-user-alt"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i className="fas fa-shopping-cart"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+        <>
+            {showUserModal && (
+                <UserProfileModal show={handleShow} close={handleClose} />
+            )}
+
+            <div className="header_section">
+                <div className="container-fluid">
+                    <nav className="navbar navbar-light bg-light justify-content-between">
+                        <div>
+                            <a className="logo" href="index.html">
+                                <img src={logo} className="logo" />
+                            </a>
+                        </div>
+                        <Navbar expand="lg" className="bg-body-tertiary">
+                            <Container>
+                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                                <Navbar.Collapse id="basic-navbar-nav">
+                                    <Nav className="me-auto">
+                                        <Nav.Link as={Link} to="/">Home</Nav.Link>
+                                        <Nav.Link as={Link} to="/products">
+                                            Products
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/about">About</Nav.Link>
+                                        <Nav.Link as={Link} to="/contact">
+                                            Contact
+                                        </Nav.Link>
+                                    </Nav>
+                                </Navbar.Collapse>
+                            </Container>
+                        </Navbar>
+
+                        <div className="login_text">
+                            <ul>
+                                <li>
+                                    <i
+                                        className="fas fa-user-alt"
+                                        onClick={handleShow}
+                                    ></i>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i className="fas fa-shopping-cart"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
