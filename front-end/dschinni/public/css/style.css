@@ -414,9 +414,12 @@ button {
     width: 100%;
     float: left;
     padding-bottom: 90px;
-    height: 100vh;
 }
 
+.top_products {
+    height: 100vh;
+
+}
 .product_taital {
     width: 100%;
     float: left;
@@ -523,13 +526,13 @@ button {
     text-align: right;
 }
 .old-price{ 
-    font-size:0.8em;  
+    font-size:15px;  
     text-decoration: line-through;  
     color:grey;
 }
 .new-price{  
     color:red; 
-    font-size:1.45em; 
+    font-size:30px; 
     line-height: 1.1; 
 }
 
@@ -753,6 +756,7 @@ button {
 .contact_section {
     width: 100%;
     float: left;
+    height: 100vh;
 }
 
 .contact_taital {

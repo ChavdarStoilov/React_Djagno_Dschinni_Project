@@ -1,10 +1,6 @@
-import Navigation from "./navigationBar";
-import Footer from "./footer";
-
 export default function Contacts() {
   return (
     <div>
-      <Navigation />
       <div className="contact_section layout_padding">
         <div className="container">
           <div className="row">
@@ -29,7 +25,6 @@ export default function Contacts() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

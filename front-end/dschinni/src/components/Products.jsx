@@ -1,10 +1,6 @@
-import Navigation from "./navigationBar";
-import Footer from "./footer";
-
 export default function Products() {
     return (
         <div>
-            <Navigation />
             <div className="product_section layout_padding">
                 <div className="container">
                     <div className="row">
@@ -359,13 +355,9 @@ export default function Products() {
                                 </div>
                             </div>
                         </div>
-                        <div className="seemore_bt">
-                            <a href="#">See More</a>
-                        </div>
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }

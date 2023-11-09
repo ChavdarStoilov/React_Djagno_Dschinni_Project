@@ -1,5 +1,6 @@
 import logo from "../assets/logo.webp";
 import { useState } from "react";
+import { Link } from 'react-router-dom'
 
 export default function Navigation() {
     const [IsLoadMenu, setIsLoadMenu] = useState(false)
@@ -30,10 +31,10 @@ export default function Navigation() {
                         >
                             &times;
                         </a>
-                        <a href="index.html">Home</a>
-                        <a href="products.html">Products</a>
-                        <a href="about.html">About</a>
-                        <a href="contact.html">Contact</a>
+                        <Link to="/">Home</Link>
+                        <Link to="/products">Products</Link>
+                        {/* <Link to="/about">About</Link> */}
+                        <Link to="/contact">Contact</Link>
                     </div>
                     }
                     <div className="toggle_icon">

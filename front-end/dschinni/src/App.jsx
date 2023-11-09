@@ -1,17 +1,21 @@
 import Navigation from "./components/navigationBar.jsx";
 import Footer from "./components/footer.jsx";
-import About from "./components/aboutUs.jsx";
-import OurClientsComments from "./components/OurCustomerComents.jsx";
-import ProductsMain from "./components/ProductsMain.jsx";
+import Products from "./components/Products.jsx";
+import Contacts from "./components/Contacts.jsx";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage.jsx";
 
 function App() {
     return (
         <>
             <Navigation />
-            <ProductsMain />
-            <About />
-            <OurClientsComments />
+            <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="products/" element={<Products />}/>
+                <Route path="contact/" element={<Contacts />}/>
+            </Routes>
             <Footer />
+
         </>
     );
 }

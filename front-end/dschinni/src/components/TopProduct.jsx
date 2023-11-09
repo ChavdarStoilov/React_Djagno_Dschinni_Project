@@ -1,8 +1,9 @@
 import TopProductItem from "./TopProductItem";
+import { Link } from  "react-router-dom"
 
 export default function TopProduct({ topProductList }) {
     return (
-        <div className="product_section layout_padding">
+        <div className="product_section layout_padding top_products">
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12">
@@ -22,7 +23,7 @@ export default function TopProduct({ topProductList }) {
                         }
                     </div>
                     <div className="seemore_bt">
-                        <a href="#">Show All Products</a>
+                        <Link to="/products">Show All Products</Link>
                     </div>
                 </div>
             </div>
