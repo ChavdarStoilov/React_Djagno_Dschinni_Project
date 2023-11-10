@@ -25,10 +25,8 @@ export default function Navigation() {
                 <UserProfileModal showUserModal={handleShowUserModal} closeUerModal={handleCloseUserModal} />
             )}
 
-            { showShoppingCartModal && <ShoppingCartModal
-                showUserModal={handleShowShoppingCartModal}
-                closeUerModal={handleCloseShoppingCartModal}
-                />
+            { showShoppingCartModal && (
+                <ShoppingCartModal showCartModal={handleShowShoppingCartModal} closeCartModal={handleCloseShoppingCartModal}/>)
             }
 
 
