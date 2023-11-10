@@ -1,14 +1,13 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function UserProfileModal({  
-    showUserModal,
-    closeUerModal
+export default function ShoppingCartModal({
+    showShoppingCart,
+    closeShoppingCart,
 }) {
-
     return (
         <>
-            <Modal show={showUserModal} onHide={closeUerModal} >
+            <Modal show={showShoppingCart} onHide={closeShoppingCart}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
@@ -16,10 +15,10 @@ export default function UserProfileModal({
                     Woohoo, you are reading this text in a modal!
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={closeUerModal}>
+                    <Button variant="secondary" onClick={closeShoppingCart}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={closeUerModal}>
+                    <Button variant="primary" onClick={closeShoppingCart}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

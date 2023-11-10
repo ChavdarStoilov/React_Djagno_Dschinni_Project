@@ -1,5 +1,4 @@
 import Navigation from "./components/navigationBar.jsx";
-import Footer from "./components/footer.jsx";
 import Products from "./components/Products.jsx";
 import Contacts from "./components/Contacts.jsx";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -20,7 +19,6 @@ function App() {
                     <Route exact path="about/" element={<About />} />
                     <Route exactpath="contact/" element={<Contacts />} />
                 </Routes>
-                <Footer />
             </AnimatePresence>
         </>
     );

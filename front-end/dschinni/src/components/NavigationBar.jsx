@@ -5,18 +5,32 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import ShoppingCartModal from "./ShoppingCartModal";
+
 
 export default function Navigation() {
     const [showUserModal, setShowUserModal] = useState(false);
+    const [showShoppingCartModal, setShoppingCartModal] = useState(false);
 
-    const handleClose = () => setShowUserModal(false);
-    const handleShow = () => setShowUserModal(true);
+
+    const handleCloseUserModal = () => setShowUserModal(false);
+    const handleShowUserModal = () => setShowUserModal(true);
+
+    const handleCloseShoppingCartModal = () => setShoppingCartModal(false);
+    const handleShowShoppingCartModal = () => setShoppingCartModal(true);
 
     return (
         <>
             {showUserModal && (
-                <UserProfileModal show={handleShow} close={handleClose} />
+                <UserProfileModal showUserModal={handleShowUserModal} closeUerModal={handleCloseUserModal} />
             )}
+
+            { showShoppingCartModal && <ShoppingCartModal
+                showUserModal={handleShowShoppingCartModal}
+                closeUerModal={handleCloseShoppingCartModal}
+                />
+            }
+
 
             <div className="header_section">
                 <div className="container-fluid">
@@ -49,13 +63,13 @@ export default function Navigation() {
                                 <li>
                                     <i
                                         className="fas fa-user-alt"
-                                        onClick={handleShow}
+                                        onClick={handleShowUserModal}
                                     ></i>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <i className="fas fa-shopping-cart"></i>
-                                    </a>
+                                    <i className="fas fa-shopping-cart"
+                                        onClick={handleShowShoppingCartModal}
+                                    ></i>
                                 </li>
                             </ul>
                         </div>
