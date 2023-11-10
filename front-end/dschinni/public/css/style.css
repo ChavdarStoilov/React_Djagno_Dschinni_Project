@@ -417,7 +417,8 @@ button {
 .product_section {
     width: 100%;
     float: left;
-    padding-bottom: 90px;
+    padding-bottom: 90px;;
+    height: 100vh;
 }
 
 .top_products {
@@ -446,7 +447,9 @@ button {
 .product_section_2 {
     width: 100%;
     float: left;
-    padding-top: 30px;
+    height: 100vh;
+    padding-top: 0px;
+    margin-top: -120px;
 }
 
 .product_box {
@@ -578,6 +581,7 @@ button {
 }
 .row {
     align-items: center;
+    margin-bottom: 200px;
 }
 .about_section {
     width: 100vw;
