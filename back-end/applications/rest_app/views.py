@@ -12,7 +12,6 @@ from rest_framework.authtoken.models import Token
 class ListProduct(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
-    # permission_classes = [IsAdminUser]
     
 class LoginView(views.APIView):
     permission_classes = (permissions.AllowAny,)

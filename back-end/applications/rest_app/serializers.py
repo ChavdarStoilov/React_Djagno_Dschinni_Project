@@ -29,12 +29,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password')
 
 class LoginSerializer(serializers.Serializer):
-    """
-    This serializer defines two fields for authentication:
-      * username
-      * password.
-    It will try to authenticate the user with when validated.
-    """
+
     username = serializers.CharField(
         label="Username",
         write_only=True

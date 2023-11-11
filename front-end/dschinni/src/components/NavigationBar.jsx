@@ -1,6 +1,6 @@
 import logo from "../assets/logo.webp";
 import { useState } from "react";
-import UserProfileModal from "./UserProfileModal";
+import UserModal from "./UserModal";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -22,7 +22,7 @@ export default function Navigation() {
     return (
         <>
             {showUserModal && (
-                <UserProfileModal showUserModal={handleShowUserModal} closeUerModal={handleCloseUserModal} />
+                <UserModal showUserModal={handleShowUserModal} closeUerModal={handleCloseUserModal} />
             )}
 
             { showShoppingCartModal && (
