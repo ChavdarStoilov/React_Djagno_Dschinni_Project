@@ -13,10 +13,10 @@ export const login = async (data) => {
                 body: JSON.stringify(data)
             }
             )
-
+        
+        const status = response.status
         const result = await response.json()
-
-        return result
+        return (status, result)
     } catch (err) {
         return err
     }

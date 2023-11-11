@@ -1006,3 +1006,17 @@ button {
 .margin_top90 {
     margin-top: 90px;
 }
+
+
+
+/* Auth Forms */
+
+.register-from {
+    padding: 30px;
+}
+
+.register_footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
