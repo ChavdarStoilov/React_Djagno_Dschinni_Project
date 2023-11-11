@@ -351,8 +351,8 @@ button {
     height: auto;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding: 120px 0px 90px;
-    height: 100vh;
+    /* padding: 120px 0px 90px; */
+    /* height: 100vh; */
 }
 
 .banner-inner {
@@ -582,6 +582,10 @@ button {
 .row {
     align-items: center;
     margin-bottom: 200px;
+}
+
+.table_row {
+    margin-bottom: 12px;
 }
 .about_section {
     width: 100vw;

@@ -31,7 +31,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                         <tbody>
                             <tr>
                                 <td data-th="Product">
-                                    <div className="row">
+                                    <div className="table_row">
                                         <div className="col-sm-2 hidden-xs">
                                             <img
                                                 src="http://placehold.it/100x100"
@@ -65,7 +65,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                             </tr>
                             <tr>
                                 <td data-th="Product">
-                                    <div className="row">
+                                    <div className="table_row">
                                         <div className="col-sm-2 hidden-xs">
                                             <img
                                                 src="http://placehold.it/100x100"
@@ -99,7 +99,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                             </tr>
                             <tr>
                                 <td data-th="Product">
-                                    <div className="row">
+                                    <div className="table_row">
                                         <div className="col-sm-2 hidden-xs">
                                             <img
                                                 src="http://placehold.it/100x100"
