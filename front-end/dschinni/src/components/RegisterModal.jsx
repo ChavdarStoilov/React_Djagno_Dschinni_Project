@@ -25,9 +25,7 @@ export default function RegisterModal({ close }) {
         api.register({ username, email, password })
             .then((result) => {
                 if (result.status >= 400){
-                    // console.log(result.data.map(({key, value}) => (key,value)));
                     setErrorServer(Object.values(result.data).map((key) => key));
-                    // setErrorServer(result.data);
                 }else if (result.status === 200){
                     UserLoginHendler(result.data);
                     close();
@@ -40,17 +38,16 @@ export default function RegisterModal({ close }) {
 
     };
 
-    console.log(errorServer);
     return (
         <>
 
             <Form onSubmit={onSubmit} className="register-from">
                 {IsLoading && <SpinnerModal />}
-                {/* {errorServer && (
+                {errorServer && (
                     <ul>
                         {errorServer.map(error => (<li><h3 className="error_msg">{error}</h3></li>))}
                     </ul>
-                )} */}
+                )}
 
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="username">Username</Form.Label>
