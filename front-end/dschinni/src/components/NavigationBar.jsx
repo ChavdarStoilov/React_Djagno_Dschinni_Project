@@ -1,20 +1,25 @@
 import logo from "../assets/logo.webp";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import UserModal from "./UserModal";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import ShoppingCartModal from "./ShoppingCartModal";
-
+import { AuthContext } from "../contexts/AuthContext";
+import SpinnerModal from "./Spinner"
 
 export default function Navigation() {
     const [showUserModal, setShowUserModal] = useState(false);
     const [showShoppingCartModal, setShoppingCartModal] = useState(false);
-
+    const [Typemodal, setTypeModal] = useState();
+    const { user } = useContext(AuthContext);
 
     const handleCloseUserModal = () => setShowUserModal(false);
-    const handleShowUserModal = () => setShowUserModal(true);
+    const handleShowUserModal = (e) => {
+        setTypeModal(e.target.textContent);
+        setShowUserModal(true);
+    };
 
     const handleCloseShoppingCartModal = () => setShoppingCartModal(false);
     const handleShowShoppingCartModal = () => setShoppingCartModal(true);
@@ -22,13 +27,19 @@ export default function Navigation() {
     return (
         <>
             {showUserModal && (
-                <UserModal showUserModal={handleShowUserModal} closeUerModal={handleCloseUserModal} />
+                <UserModal
+                    showUserModal={handleShowUserModal}
+                    closeUerModal={handleCloseUserModal}
+                    type={Typemodal}
+                />
             )}
 
-            { showShoppingCartModal && (
-                <ShoppingCartModal showCartModal={handleShowShoppingCartModal} closeCartModal={handleCloseShoppingCartModal}/>)
-            }
-
+            {showShoppingCartModal && (
+                <ShoppingCartModal
+                    showCartModal={handleShowShoppingCartModal}
+                    closeCartModal={handleCloseShoppingCartModal}
+                />
+            )}
 
             <div className="header_section">
                 <div className="container-fluid">
@@ -43,11 +54,15 @@ export default function Navigation() {
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="me-auto">
-                                        <Nav.Link as={Link} to="/">Home</Nav.Link>
+                                        <Nav.Link as={Link} to="/">
+                                            Home
+                                        </Nav.Link>
                                         <Nav.Link as={Link} to="/products">
                                             Products
                                         </Nav.Link>
-                                        <Nav.Link as={Link} to="/about">About</Nav.Link>
+                                        <Nav.Link as={Link} to="/about">
+                                            About
+                                        </Nav.Link>
                                         <Nav.Link as={Link} to="/contact">
                                             Contact
                                         </Nav.Link>
@@ -56,21 +71,47 @@ export default function Navigation() {
                             </Container>
                         </Navbar>
 
-                        <div className="login_text">
-                            <ul>
-                                <li>
-                                    <i
-                                        className="fas fa-user-alt"
-                                        onClick={handleShowUserModal}
-                                    ></i>
-                                </li>
-                                <li>
-                                    <i className="fas fa-shopping-cart"
-                                        onClick={handleShowShoppingCartModal}
-                                    ></i>
-                                </li>
-                            </ul>
-                        </div>
+                        <Navbar expand="lg" className="bg-body-tertiary">
+                            <Container>
+                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                                <Navbar.Collapse id="basic-navbar-nav">
+                                    {user.email ? (
+                                        <Nav className="me-auto">
+                                            <Nav.Link
+                                                onClick={handleShowUserModal}
+                                            >
+                                                <i className="fas fa-user-alt"></i>
+                                            </Nav.Link>
+                                            <Nav.Link
+                                                onClick={
+                                                    handleShowShoppingCartModal
+                                                }
+                                            >
+                                                <i
+                                                    className="fas fa-shopping-cart"
+                                                    onClick={
+                                                        handleShowShoppingCartModal
+                                                    }
+                                                ></i>
+                                            </Nav.Link>
+                                        </Nav>
+                                    ) : (
+                                        <Nav className="me-auto">
+                                            <Nav.Link
+                                                onClick={handleShowUserModal}
+                                            >
+                                                Login
+                                            </Nav.Link>
+                                            <Nav.Link
+                                                onClick={handleShowUserModal}
+                                            >
+                                                Register
+                                            </Nav.Link>
+                                        </Nav>
+                                    )}
+                                </Navbar.Collapse>
+                            </Container>
+                        </Navbar>
                     </nav>
                 </div>
             </div>

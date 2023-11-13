@@ -1,10 +1,10 @@
-const BaseUrl = 'http://127.0.0.1:8000/rest/register/'
+const BaseUrl = 'http://127.0.0.1:8000/rest'
 
 
-export const login = async (data) => {
+export const register = async (data) => {
     try {
         const response = await fetch(
-            BaseUrl, 
+            `${BaseUrl}/register/`, 
             {
                 method: 'POST',
                 headers: {
@@ -14,11 +14,30 @@ export const login = async (data) => {
             }
             )
         
-        const status = response.status
         const result = await response.json()
-        return (status, result)
+        return [response.status, result]
     } catch (err) {
         return err
     }
 
+}
+
+
+export const login = async (data) => {
+    try {
+        const response = await fetch(
+            `${BaseUrl}/login/`,
+            {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            }
+        )
+        const result = await response.json()
+        return result
+    } catch (err) {
+        return err
+    }
 }

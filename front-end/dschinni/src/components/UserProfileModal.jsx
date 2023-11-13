@@ -1,22 +1,22 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function UserProfileModal() {
+export default function UserProfileModal({ show, close}) {
 
     return (
         <>
-            <Modal show={showUserModal} onHide={closeUerModal} >
+            <Modal show={show} onHide={close} >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     Woohoo, you are reading this text in a modal!
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={closeUerModal}>
+                    <Button variant="secondary" onClick={close}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={closeUerModal}>
+                    <Button variant="primary" onClick={close}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

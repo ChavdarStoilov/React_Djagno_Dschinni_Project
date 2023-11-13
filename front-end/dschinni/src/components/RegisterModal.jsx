@@ -20,12 +20,11 @@ export default function RegisterModal({ close }) {
             new FormData(event.target)
         );
 
-        api.login({ username, email, password })
-            .then((status, data) => {
-                console.log(status, data);
-                if (status === 400) {
-                    setErrorServer(data);
-                } else if (status === 200) {
+        api.register({ username, email, password })
+            .then((result) => {
+                if (result[0] === 400) {
+                    console.log(result[1]);
+                } else if (result[0] === 200) {
                     setValidated(true);
                     close();
                 }

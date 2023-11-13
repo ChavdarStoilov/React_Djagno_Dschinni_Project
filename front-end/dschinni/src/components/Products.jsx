@@ -2,7 +2,6 @@ import Transitions from "./Transition";
 import ProductsItem from "./ProductsItem";
 import * as api from "../api/GetAllProducts";
 import { useState, useEffect } from "react";
-import SpinnerModal from "./Spinner";
 
 export default function Products() {
     const [ListOfProducts, SetListOfProducts] = useState([]);
