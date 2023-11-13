@@ -15,7 +15,9 @@ export const register = async (data) => {
             )
         
         const result = await response.json()
-        return [response.status, result]
+        
+        return {data: result, status: response.status}
+
     } catch (err) {
         return err
     }
@@ -35,8 +37,11 @@ export const login = async (data) => {
                 body: JSON.stringify(data)
             }
         )
+
         const result = await response.json()
-        return result
+
+        return {data: result, status: response.status}
+        
     } catch (err) {
         return err
     }

@@ -5,15 +5,13 @@ import Row from "react-bootstrap/Row";
 import * as api from "../api/auth_api";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
-import SpinnerModal from "./Spinner"
+import SpinnerModal from "./Spinner";
 
-export default function LoginModal({
-    close
-}) {
+export default function LoginModal({ close }) {
     const [validated, setValidated] = useState(false);
     const [errorServer, setErrorServer] = useState();
-    const { UserLoginHendler } = useContext(AuthContext)
-    const [IsLoading, setIsLoading] = useState(false)
+    const { UserLoginHendler } = useContext(AuthContext);
+    const [IsLoading, setIsLoading] = useState(false);
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -26,27 +24,30 @@ export default function LoginModal({
         const { username, password } = Object.fromEntries(
             new FormData(event.target)
         );
-        
-        setIsLoading(true)
+
+        setIsLoading(true);
+        setErrorServer(false);
+
         api.login({ username, password })
-            .then( result => {
-                UserLoginHendler(result);
-                
+            .then((result) => {
+                if (result.status === 400){
+                    setErrorServer(result.data.non_field_errors);
+                }else if (result.status === 200){
+                    UserLoginHendler(result.data);
+                    close();
+                };
             })
             .catch((error) => setErrorServer(error))
             .finally(() => {
                 setIsLoading(false);
-                close();
-            })
+            });
     };
-
 
     return (
         <>
-            {IsLoading && <SpinnerModal/>}
-            <Form onSubmit={onSubmit} className="logon-from">
-                {errorServer}
-
+            <Form onSubmit={onSubmit} className="login-form">
+                {IsLoading && <SpinnerModal />}
+                {errorServer && <h2 className="error_msg">{errorServer}</h2>}
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="username">Username</Form.Label>
                     <Form.Control
@@ -63,7 +64,6 @@ export default function LoginModal({
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
-
 
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="password">Password</Form.Label>

@@ -1010,19 +1010,22 @@ button {
 
 
 /* Auth Forms */
-
-.register-from {
+.modal-content {
+    background-color: rgb(0, 0, 0, 0.7);
+}
+.register-from, .login-form {
     padding: 30px;
 }
 
-.register_footer {
+
+.register_footer, .login_footer {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
 .spinner-container {
-    background-color: rgba(0,0,0,0.6)
+    margin: 0 45%;
 }
 @keyframes spinner {
     0% {
@@ -1040,3 +1043,8 @@ button {
     border-radius: 50%;
     animation: spinner 1.5s linear infinite;
   }
+
+.error_msg {
+    text-align: center;
+    color: red;
+}

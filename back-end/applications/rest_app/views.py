@@ -33,7 +33,7 @@ class LoginView(ObtainAuthToken):
         })
     
 class UserCreateView(views.APIView):
-
+    permission_classes = (permissions.AllowAny,)
     def post(self, request, format='json'):
         serializer = RegisterUserSerializer(data=request.data)
         if serializer.is_valid():

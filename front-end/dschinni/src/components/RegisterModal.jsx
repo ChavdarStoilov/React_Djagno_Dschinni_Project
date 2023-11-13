@@ -7,6 +7,8 @@ import * as api from "../api/auth_api";
 export default function RegisterModal({ close }) {
     const [validated, setValidated] = useState(false);
     const [errorServer, setErrorServer] = useState();
+    const [IsLoading, setIsLoading] = useState(false);
+
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -22,22 +24,27 @@ export default function RegisterModal({ close }) {
 
         api.register({ username, email, password })
             .then((result) => {
-                if (result[0] === 400) {
-                    console.log(result[1]);
-                } else if (result[0] === 200) {
-                    setValidated(true);
+                if (result.status === 401){
+                    setErrorServer(result.data);
+                }else if (result.status === 200){
+                    UserLoginHendler(result.data);
                     close();
-                }
+                };
             })
-            .catch((error) => setErrorServer(error));
-        
-            console.log(errorServer);
+            .catch((error) => setErrorServer(error))
+            .finally(() => {
+                setIsLoading(false);
+            })
+
     };
 
+    console.log(errorServer);
     return (
         <>
+
             <Form onSubmit={onSubmit} className="register-from">
-                {errorServer}
+                {IsLoading && <SpinnerModal />}
+                {errorServer && <h2 className="error_msg">{errorServer}</h2>}
 
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="username">Username</Form.Label>
