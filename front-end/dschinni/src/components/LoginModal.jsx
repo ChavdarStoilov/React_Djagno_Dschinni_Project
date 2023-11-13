@@ -12,6 +12,7 @@ export default function LoginModal({ close }) {
     const [errorServer, setErrorServer] = useState();
     const { UserLoginHendler } = useContext(AuthContext);
     const [IsLoading, setIsLoading] = useState(false);
+    const [SuccessMsg, setSuccessMsg] = useState(false);
 
     const onSubmit = (event) => {
         event.preventDefault();

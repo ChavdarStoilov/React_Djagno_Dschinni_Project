@@ -1,8 +1,8 @@
 from .models import Product
 from rest_framework import serializers
 from django.contrib.auth import authenticate
-from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
+from .validators import CustomUniqueValidator
 
 class ProductListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,10 +12,10 @@ class ProductListSerializer(serializers.ModelSerializer):
 class RegisterUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
             required=True,
-            validators=[UniqueValidator(queryset=User.objects.all())]
+            validators=[CustomUniqueValidator(queryset=User.objects.all())]
             )
     username = serializers.CharField(
-            validators=[UniqueValidator(queryset=User.objects.all())]
+            validators=[CustomUniqueValidator(queryset=User.objects.all())]
             )
     password = serializers.CharField(min_length=8)
 

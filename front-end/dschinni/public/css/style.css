@@ -1044,6 +1044,10 @@ button {
     animation: spinner 1.5s linear infinite;
   }
 
+.modal-dialog{
+    margin: 150px auto 0px;
+}
+
 .error_msg {
     text-align: center;
     color: red;
