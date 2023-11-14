@@ -10,7 +10,10 @@ export default function Products() {
     useEffect(() => {
 
         api.ListOfProducts()
-            .then((result) => SetListOfProducts(result))
+            .then((result) => {
+                console.log(result.data);
+                SetListOfProducts(result.data)
+            })
             .catch((err) => {
                 console.log(err)
 

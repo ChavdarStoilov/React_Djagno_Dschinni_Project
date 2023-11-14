@@ -6,11 +6,11 @@ import HomePage from "./components/HomePage";
 import { AnimatePresence } from "framer-motion";
 import About from "./components/aboutUs";
 import { AuthContext } from "./contexts/AuthContext";
-import { useState } from "react";
+import { useLocalStorage } from "./hooks/CustomLocalUse"
 
 function App() {
     const location = useLocation();
-    const [auth, setAuth] = useState({});
+    const [auth, setAuth] = useLocalStorage('auth', {});
 
     const UserLoginHendler = (authData) => {
         setAuth(authData);
