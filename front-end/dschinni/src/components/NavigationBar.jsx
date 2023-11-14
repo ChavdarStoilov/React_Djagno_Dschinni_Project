@@ -7,7 +7,8 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import ShoppingCartModal from "./ShoppingCartModal";
 import { AuthContext } from "../contexts/AuthContext";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faSignOutAlt, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navigation() {
     const [showUserModal, setShowUserModal] = useState(false);
@@ -77,22 +78,26 @@ export default function Navigation() {
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     {user.email ? (
                                         <Nav className="me-auto">
-                                            <Nav.Link
-                                                onClick={handleShowUserModal}
-                                            >
-                                                <i className="fas fa-user-alt"></i>
+                                            <Nav.Link>
+                                                <FontAwesomeIcon
+                                                    icon={faUser}
+                                                    onClick={
+                                                        handleShowUserModal
+                                                    }
+                                                />
                                             </Nav.Link>
-                                            <Nav.Link
-                                                onClick={
-                                                    handleShowShoppingCartModal
-                                                }
-                                            >
-                                                <i
-                                                    className="fas fa-shopping-cart"
+                                            <Nav.Link>
+                                                <FontAwesomeIcon
+                                                    icon={faShoppingCart}
                                                     onClick={
                                                         handleShowShoppingCartModal
                                                     }
-                                                ></i>
+                                                />
+                                            </Nav.Link>
+                                            <Nav.Link>
+                                                <FontAwesomeIcon
+                                                    icon={faSignOutAlt}
+                                                />
                                             </Nav.Link>
                                         </Nav>
                                     ) : (

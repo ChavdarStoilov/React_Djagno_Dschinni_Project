@@ -1,5 +1,7 @@
 import CloseButton from "react-bootstrap/CloseButton";
 import Modal from "react-bootstrap/Modal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
     return (
@@ -11,7 +13,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                 aria-labelledby="example-modal-sizes-title-lg"
             >
                 <Modal.Header>
-                    <Modal.Title>Shopping Cart</Modal.Title>
+                    <Modal.Title className="table-custom-color">Shopping Cart</Modal.Title>
                     <CloseButton />
                 </Modal.Header>
                 <Modal.Body>
@@ -21,10 +23,10 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                     >
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th className="text-center">Subtotal</th>
+                                <th className="table-custom-color">Product</th>
+                                <th className="table-custom-color">Price</th>
+                                <th className="table-custom-color">Quantity</th>
+                                <th className="text-center table-custom-color">Subtotal</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -34,6 +36,38 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                                     <div className="table_row">
                                         <div className="col-sm-2 hidden-xs">
                                             <img
+                                                src={`images/Mike hookah set.webp`}
+                                                alt="..."
+                                                className="img-responsive"
+                                            />
+                                        </div>
+                                        <div className="col-sm-10">
+                                            <h4 className="table-custom-color nomargin">
+                                                Product 1
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="Price" className="table-custom-color">$5.11</td>
+                                <td data-th="Quantity">
+                                    <input
+                                        type="number"
+                                        className="form-control text-center"
+                                        defaultValue={1}
+                                    />
+                                </td>
+                                <td data-th="Subtotal" className="text-center table-custom-color">
+                                    $5.11
+                                </td>
+                                <td className="actions" data-th="">
+                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="Product">
+                                    <div className="table_row">
+                                        <div className="col-sm-2 hidden-xs">
+                                            <img
                                                 src="http://placehold.it/100x100"
                                                 alt="..."
                                                 className="img-responsive"
@@ -58,9 +92,6 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                                     $5.11
                                 </td>
                                 <td className="actions" data-th="">
-                                    <button className="btn btn-danger btn-sm">
-                                        <i className="fa fa-trash-o"></i>
-                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -93,41 +124,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                                 </td>
                                 <td className="actions" data-th="">
                                     <button className="btn btn-danger btn-sm">
-                                        <i className="fa fa-trash-o"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td data-th="Product">
-                                    <div className="table_row">
-                                        <div className="col-sm-2 hidden-xs">
-                                            <img
-                                                src="http://placehold.it/100x100"
-                                                alt="..."
-                                                className="img-responsive"
-                                            />
-                                        </div>
-                                        <div className="col-sm-10">
-                                            <h4 className="nomargin">
-                                                Product 1
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-th="Price">$5.11</td>
-                                <td data-th="Quantity">
-                                    <input
-                                        type="number"
-                                        className="form-control text-center"
-                                        defaultValue={1}
-                                    />
-                                </td>
-                                <td data-th="Subtotal" className="text-center">
-                                    $5.11
-                                </td>
-                                <td className="actions" data-th="">
-                                    <button className="btn btn-danger btn-sm">
-                                        <i className="fa fa-trash-o"></i>
+                                        <FontAwesomeIcon icon="fas fa-trash-alt" />
                                     </button>
                                 </td>
                             </tr>
@@ -144,7 +141,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                                     </span>
                                 </td>
                                 <td colSpan="2" className="hidden-xs"></td>
-                                <td className="hidden-xs text-center">
+                                <td className="hidden-xs text-center table-custom-color">
                                     <strong>Total $ 5.11</strong>
                                 </td>
                                 <td>

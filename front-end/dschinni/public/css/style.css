@@ -461,6 +461,10 @@ button {
     margin-top: 30px;
 }
 
+.product_box:hover {
+    transform: scale(1.1);
+}
+
 .bursh_text {
     width: 100%;
     font-size: 20px;
@@ -940,10 +944,17 @@ button {
     float: right;
 }
 
-.fa-bars, .fa-user-alt, .fa-shopping-cart {
+.fa-bars, 
+.fa-user, 
+.fa-cart-shopping, 
+.fa-right-from-bracket,
+.fa-trash-can {
     color: #dead44;
     font-size: 20px;
     cursor: pointer;
+}
+.fa-trash-can {
+    color: red;
 }
 
 .social_icon {
@@ -1038,8 +1049,8 @@ button {
   .loading-spinner {
     width: 50px;
     height: 50px;
-    border: 10px solid #f3f3f3; /* Light grey */
-    border-top: 10px solid #383636; /* Black */
+    border: 10px solid #ebad28; 
+    border-top: 10px solid #383636; 
     border-radius: 50%;
     animation: spinner 1.5s linear infinite;
   }
@@ -1056,4 +1067,26 @@ button {
 .success_msg {
     text-align: center;
     color: rgb(0, 255, 64);
+}
+
+
+.col-sm-2  > img {
+    max-width: unset;
+    width: 60px;
+}
+
+.table-custom-color,
+.form-custom-color {
+    color: #f1c76c;
+}
+
+.btn-primary {
+    background-color: #f1c76c;
+    border-color: #f1c76c;
+}
+
+.btn-primary:hover {
+    background-color: #ebad28;
+    border-color: #ebad28;
+
 }

@@ -50,7 +50,7 @@ export default function LoginModal({ close }) {
                 {IsLoading && <SpinnerModal />}
                 {errorServer && <h2 className="error_msg">{errorServer}</h2>}
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="username">Username</Form.Label>
+                    <Form.Label htmlFor="username" className="form-custom-color">Username</Form.Label>
                     <Form.Control
                         required
                         type="text"
@@ -67,7 +67,7 @@ export default function LoginModal({ close }) {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Label htmlFor="password" className="form-custom-color">Password</Form.Label>
                     <Form.Control
                         required
                         type="password"

@@ -17,7 +17,7 @@ export default function UserProfileModal({ show, close }) {
     useEffect(() => {
         setSuccessMsg(false);
         setIsLoading(true);
-        api.GetProfileInfo(user.user_id)
+        api.GetProfileInfo(user.user_id, user.token)
             .then((profile) => {
                 if (profile.status === 200) {
                     setUserProfileData(profile.data[0]);
@@ -42,7 +42,7 @@ export default function UserProfileModal({ show, close }) {
         );
         
         const data = {username, first_name, last_name, email}
-        api.UpdateProfileInfo(user.user_id, data)
+        api.UpdateProfileInfo(user.user_id, data, user.token)
         .then((result) => {
             if (result.status === 200) {
                 setSuccessMsg(true);

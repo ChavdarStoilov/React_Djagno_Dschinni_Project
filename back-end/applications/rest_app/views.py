@@ -16,7 +16,7 @@ User_Model = get_user_model()
 
 class UserProfileView(generics.ListAPIView, generics.UpdateAPIView):
     serializer_class = UserListSerializer
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.IsAuthenticated,)
     queryset = User_Model
     
     def list(self, request, *args, **kwargs):

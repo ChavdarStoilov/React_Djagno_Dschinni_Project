@@ -13,7 +13,7 @@ export default function ProductsItem({
                 <p className="lorem_text">
                     {desc}
                 </p>
-                <img src="images/img-1.png" className="image_1" />
+                <img src={`images/${name}.webp`} className="image_1" />
                 <div className="btn_main">
                     <div className="buy_bt">
                         <ul>
