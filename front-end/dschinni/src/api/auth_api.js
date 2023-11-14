@@ -13,3 +13,5 @@ export const GetProfileInfo = async (id) => requester.get(`${BaseUrl}/profile/${
 
 
 export const UpdateProfileInfo = async (id, data) => requester.put(`${BaseUrl}/profile/${id}`, data);
+
+export const Logout = async () => requester.get(`${BaseUrl}/logout/`)

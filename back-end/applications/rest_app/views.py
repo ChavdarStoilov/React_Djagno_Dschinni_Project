@@ -4,11 +4,11 @@ from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import views
 from rest_framework.response import Response
-from django.contrib.auth import login
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login, logout
+from django.utils.translation import gettext_lazy as _
 
 User_Model = get_user_model()
 
@@ -60,3 +60,20 @@ class UserCreateView(views.APIView):
                 return Response(json, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class LogoutViewEx(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+                    
+    def get(self, request, *args, **kwargs):
+        if self.request.user:
+            try:
+                request.user.auth_token.delete()
+            except (AttributeError):
+                pass
+
+            logout(request)
+            
+            return Response({"success": _("Successfully logged out.")},status=status.HTTP_200_OK)
+        
+        return Response({'msg': "There not have login user!"}, status=status.HTTP_400_BAD_REQUEST)

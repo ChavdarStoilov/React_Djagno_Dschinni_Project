@@ -1,4 +1,4 @@
-import Navigation from "./components/navigationBar";
+import Navigation from "./components/NavigationBar";
 import Products from "./components/Products";
 import Contacts from "./components/Contacts";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -16,8 +16,13 @@ function App() {
         setAuth(authData);
     };
 
+    const UserLogoutHendler = () => {
+        setAuth({})
+    };
+
+    console.log(auth)
     return (
-        <AuthContext.Provider value={{user: auth, UserLoginHendler }}>
+        <AuthContext.Provider value={{user: auth, UserLoginHendler, UserLogoutHendler }}>
             <AnimatePresence>
                 <Navigation />
                 <Routes location={location} key={location.pathname}>

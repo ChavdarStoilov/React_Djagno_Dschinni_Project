@@ -9,12 +9,14 @@ import ShoppingCartModal from "./ShoppingCartModal";
 import { AuthContext } from "../contexts/AuthContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faSignOutAlt, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import * as api from '../api/auth_api'
 
 export default function Navigation() {
     const [showUserModal, setShowUserModal] = useState(false);
     const [showShoppingCartModal, setShoppingCartModal] = useState(false);
     const [Typemodal, setTypeModal] = useState();
     const { user } = useContext(AuthContext);
+    const { UserLogoutHendler } = useContext(AuthContext);
 
     const handleCloseUserModal = () => setShowUserModal(false);
     const handleShowUserModal = (e) => {
@@ -24,6 +26,17 @@ export default function Navigation() {
 
     const handleCloseShoppingCartModal = () => setShoppingCartModal(false);
     const handleShowShoppingCartModal = () => setShoppingCartModal(true);
+
+    const LogoutHandler = () => {
+
+        api.Logout()
+        .then((result) => {
+            if (result.status ===200, 201) {
+                UserLogoutHendler();
+            }
+        });
+
+    };
 
     return (
         <>
@@ -97,6 +110,7 @@ export default function Navigation() {
                                             <Nav.Link>
                                                 <FontAwesomeIcon
                                                     icon={faSignOutAlt}
+                                                    onClick={LogoutHandler}
                                                 />
                                             </Nav.Link>
                                         </Nav>
