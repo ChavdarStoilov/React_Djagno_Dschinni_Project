@@ -59,3 +59,25 @@ export const GetProfileInfo = async (id) => {
         return err
     }
 }
+
+export const UpdateProfileInfo = async (id, data) => {
+    try {
+        const response = await fetch(
+            `${BaseUrl}/profile/${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            }
+        )
+
+        const result = await response.json()
+
+        return {data: result, status: response.status}
+        
+    } catch (err) {
+        return err
+    }
+}

@@ -14,7 +14,7 @@ User_Model = get_user_model()
 
 
 
-class UserProfileView(generics.ListAPIView):
+class UserProfileView(generics.ListAPIView, generics.UpdateAPIView):
     serializer_class = UserListSerializer
     permission_classes = (permissions.AllowAny,)
     queryset = User_Model
