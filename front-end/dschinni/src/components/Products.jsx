@@ -2,20 +2,30 @@ import Transitions from "./Transition";
 import ProductsItem from "./ProductsItem";
 import * as api from "../api/GetAllProducts";
 import { useState, useEffect } from "react";
+import { useLocalStorage } from "../hooks/CustomLocalUse"
+
 
 export default function Products() {
     const [ListOfProducts, SetListOfProducts] = useState([]);
     const [FetchFailed, setFetchFailed] = useState(false);
+    const [OrderingProducts, setOrderingProducts] = useLocalStorage('products', [])
 
     useEffect(() => {
 
         api.ListOfProducts()
             .then((result) => SetListOfProducts(result.data))
             .catch((err) => {
-                console.log(err)
+                setFetchFailed(err)
 
             })
     }, []);
+
+    const OrderProductHendler = (products) => {
+        setOrderingProducts([...OrderingProducts, products])
+
+    }
+
+    console.log(OrderProductHendler);
 
     return (
         <>
@@ -42,6 +52,7 @@ export default function Products() {
                                         techDecs={product.technical_details}
                                         kit={product.kit_scope}
                                         stock={product.stock}
+                                        order={OrderProductHendler}
                                     />
                                 ))}
                             </div>

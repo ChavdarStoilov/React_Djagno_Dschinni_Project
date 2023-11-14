@@ -4,8 +4,18 @@ export default function ProductsItem({
     desc,
     techDecs,
     kit,
-    stock
+    stock,
+    order
 }) {
+
+    const AddInOrderHandler = () => {
+        const data = {
+            name: name,
+            price: price,
+        }
+        order(data)
+    }
+
     return (
         <div className="col-lg-3 col-sm-6">
             <div className="product_box">
@@ -18,7 +28,7 @@ export default function ProductsItem({
                     <div className="buy_bt">
                         <ul>
                             <li className="active">
-                                <a href="#">Buy Now</a>
+                                <a onClick={AddInOrderHandler}>Buy Now</a>
                             </li>
                         </ul>
                     </div>
