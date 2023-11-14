@@ -1,4 +1,5 @@
 export default function ProductsItem({
+    id,
     name,
     price,
     desc,
@@ -10,6 +11,7 @@ export default function ProductsItem({
 
     const AddInOrderHandler = () => {
         const data = {
+            id: id,
             name: name,
             price: price,
         }

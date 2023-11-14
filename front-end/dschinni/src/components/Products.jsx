@@ -3,6 +3,7 @@ import ProductsItem from "./ProductsItem";
 import * as api from "../api/GetAllProducts";
 import { useState, useEffect } from "react";
 import { useLocalStorage } from "../hooks/CustomLocalUse"
+import { CartProducts } from "../utils/CartProducts.";
 
 
 export default function Products() {
@@ -20,12 +21,10 @@ export default function Products() {
             })
     }, []);
 
-    const OrderProductHendler = (products) => {
-        setOrderingProducts([...OrderingProducts, products])
+    const OrderProductHendler = (product) => {
+        setOrderingProducts([...OrderingProducts, product])
 
     }
-
-    console.log(OrderProductHendler);
 
     return (
         <>
@@ -42,6 +41,7 @@ export default function Products() {
                                 {!FetchFailed && ListOfProducts.map((product) => (
                                     <ProductsItem
                                         key={product.id}
+                                        id={product.id}
                                         name={product.name}
                                         price={
                                             product.promo_price

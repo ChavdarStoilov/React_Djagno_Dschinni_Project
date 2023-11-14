@@ -20,7 +20,6 @@ function App() {
         setAuth({})
     };
 
-    console.log(auth)
     return (
         <AuthContext.Provider value={{user: auth, UserLoginHendler, UserLogoutHendler }}>
             <AnimatePresence>

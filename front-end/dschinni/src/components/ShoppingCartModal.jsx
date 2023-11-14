@@ -1,9 +1,34 @@
 import CloseButton from "react-bootstrap/CloseButton";
 import Modal from "react-bootstrap/Modal";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import ShoppingCartItem from "./ShoppingCartItem";
+import { useState } from "react";
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
+    const [NewData, setNewDate] = useState(() => {
+        const newValue = [];
+
+        const Data = localStorage.getItem("products");
+        const ParseJSON = Data ? JSON.parse(Data) : null;
+        
+        if (ParseJSON) {
+            ParseJSON.map((product) => {
+                    !newValue[product.id]
+                        ? (newValue[product.id] = {
+                                _id: product.id,
+                                name: product.name,
+                                price: product.price,
+                                counter: 1,
+                            })
+                        : (newValue[product.id].counter += 1);
+                })
+        }
+
+        return newValue
+
+    });
+
+    console.log(NewData);
+
     return (
         <>
             <Modal
@@ -13,7 +38,9 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                 aria-labelledby="example-modal-sizes-title-lg"
             >
                 <Modal.Header>
-                    <Modal.Title className="table-custom-color">Shopping Cart</Modal.Title>
+                    <Modal.Title className="table-custom-color">
+                        Shopping Cart
+                    </Modal.Title>
                     <CloseButton />
                 </Modal.Header>
                 <Modal.Body>
@@ -26,108 +53,19 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                                 <th className="table-custom-color">Product</th>
                                 <th className="table-custom-color">Price</th>
                                 <th className="table-custom-color">Quantity</th>
-                                <th className="text-center table-custom-color">Subtotal</th>
+                                <th className="text-center table-custom-color">
+                                    Subtotal
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td data-th="Product">
-                                    <div className="table_row">
-                                        <div className="col-sm-2 hidden-xs">
-                                            <img
-                                                src={`images/Mike hookah set.webp`}
-                                                alt="..."
-                                                className="img-responsive"
-                                            />
-                                        </div>
-                                        <div className="col-sm-10">
-                                            <h4 className="table-custom-color nomargin">
-                                                Product 1
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-th="Price" className="table-custom-color">$5.11</td>
-                                <td data-th="Quantity">
-                                    <input
-                                        type="number"
-                                        className="form-control text-center"
-                                        defaultValue={1}
-                                    />
-                                </td>
-                                <td data-th="Subtotal" className="text-center table-custom-color">
-                                    $5.11
-                                </td>
-                                <td className="actions" data-th="">
-                                    <FontAwesomeIcon icon={faTrashAlt} />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td data-th="Product">
-                                    <div className="table_row">
-                                        <div className="col-sm-2 hidden-xs">
-                                            <img
-                                                src="http://placehold.it/100x100"
-                                                alt="..."
-                                                className="img-responsive"
-                                            />
-                                        </div>
-                                        <div className="col-sm-10">
-                                            <h4 className="nomargin">
-                                                Product 1
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-th="Price">$5.11</td>
-                                <td data-th="Quantity">
-                                    <input
-                                        type="number"
-                                        className="form-control text-center"
-                                        defaultValue={1}
-                                    />
-                                </td>
-                                <td data-th="Subtotal" className="text-center">
-                                    $5.11
-                                </td>
-                                <td className="actions" data-th="">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td data-th="Product">
-                                    <div className="table_row">
-                                        <div className="col-sm-2 hidden-xs">
-                                            <img
-                                                src="http://placehold.it/100x100"
-                                                alt="..."
-                                                className="img-responsive"
-                                            />
-                                        </div>
-                                        <div className="col-sm-10">
-                                            <h4 className="nomargin">
-                                                Product 1
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-th="Price">$5.11</td>
-                                <td data-th="Quantity">
-                                    <input
-                                        type="number"
-                                        className="form-control text-center"
-                                        defaultValue={1}
-                                    />
-                                </td>
-                                <td data-th="Subtotal" className="text-center">
-                                    $5.11
-                                </td>
-                                <td className="actions" data-th="">
-                                    <button className="btn btn-danger btn-sm">
-                                        <FontAwesomeIcon icon="fas fa-trash-alt" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {NewData && NewData.map(product => (
+                                <ShoppingCartItem
+                                    key={product.id}
+                                    data={product}
+                                />
+                            ))}
                         </tbody>
                         <tfoot>
                             <tr>

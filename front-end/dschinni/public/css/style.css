@@ -1090,3 +1090,16 @@ button {
     border-color: #ebad28;
 
 }
+
+.table td, .table th {
+    vertical-align: middle
+}
+.price {
+    width: 100px;
+}
+.counter {
+    width: 80px;
+}
+.actions {
+    text-align: center;
+}
