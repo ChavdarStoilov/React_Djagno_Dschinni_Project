@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import ShoppingCartModal from "./ShoppingCartModal";
 import { AuthContext } from "../contexts/AuthContext";
-import SpinnerModal from "./Spinner"
+
 
 export default function Navigation() {
     const [showUserModal, setShowUserModal] = useState(false);

@@ -1,5 +1,5 @@
 from .models import Product
-from .serializers import ProductListSerializer, LoginSerializer, RegisterUserSerializer
+from .serializers import ProductListSerializer, LoginSerializer, RegisterUserSerializer, UserListSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import views
@@ -8,8 +8,23 @@ from django.contrib.auth import login
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+from django.contrib.auth import get_user_model
+
+User_Model = get_user_model()
 
 
+
+class UserProfileView(generics.ListAPIView):
+    serializer_class = UserListSerializer
+    permission_classes = (permissions.AllowAny,)
+    queryset = User_Model
+    
+    def list(self, request, *args, **kwargs):
+        queryset = User_Model.objects.all().filter(pk=kwargs['pk'])
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+    
 class ListProduct(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer

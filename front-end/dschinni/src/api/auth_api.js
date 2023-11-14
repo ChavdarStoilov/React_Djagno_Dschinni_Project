@@ -46,3 +46,16 @@ export const login = async (data) => {
         return err
     }
 }
+
+
+export const GetProfileInfo = async (id) => {
+    try {
+        const response = await fetch(`${BaseUrl}/profile/${id}`)
+
+        const result = await response.json()
+
+        return {data: result, status: response.status}
+    }catch (err) {
+        return err
+    }
+}

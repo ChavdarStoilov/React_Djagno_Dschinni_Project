@@ -3,11 +3,19 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .validators import CustomUniqueValidator
+from django.contrib.auth import get_user_model
+
+User_Model = get_user_model()
 
 class ProductListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+        
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User_Model
+        fields = ['username','first_name','last_name','email',]
         
 class RegisterUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
