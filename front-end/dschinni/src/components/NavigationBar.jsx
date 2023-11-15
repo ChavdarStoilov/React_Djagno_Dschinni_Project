@@ -11,7 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faSignOutAlt, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import * as api from '../api/auth_api'
 
-export default function Navigation() {
+export default function Navigation({
+    ordering
+}) {
     const [showUserModal, setShowUserModal] = useState(false);
     const [showShoppingCartModal, setShoppingCartModal] = useState(false);
     const [Typemodal, setTypeModal] = useState();
@@ -52,6 +54,8 @@ export default function Navigation() {
                 <ShoppingCartModal
                     showCartModal={handleShowShoppingCartModal}
                     closeCartModal={handleCloseShoppingCartModal}
+                    ordering={ordering}
+
                 />
             )}
 

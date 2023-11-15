@@ -2,13 +2,13 @@ import Transitions from "./Transition";
 import ProductsItem from "./ProductsItem";
 import * as api from "../api/GetAllProducts";
 import { useState, useEffect } from "react";
-import { useLocalStorage } from "../hooks/CustomLocalUse"
 
 
-export default function Products() {
+export default function Products({
+    ordering
+}) {
     const [ListOfProducts, SetListOfProducts] = useState([]);
     const [FetchFailed, setFetchFailed] = useState(false);
-    const [OrderingProducts, setOrderingProducts] = useLocalStorage('products', [])
 
     useEffect(() => {
 
@@ -21,8 +21,7 @@ export default function Products() {
     }, []);
 
     const OrderProductHendler = (product) => {
-        setOrderingProducts([...OrderingProducts, product])
-
+        ordering('add', product)
     }
 
     return (

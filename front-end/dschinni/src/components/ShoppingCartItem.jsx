@@ -34,7 +34,7 @@ export default function ShoppingCartItem({
                 <input
                     type="number"
                     className="form-control text-center counter"
-                    defaultValue={1}
+                    defaultValue={data.counter}
                 />
             </td>
             <td data-th="Subtotal" className="text-center table-custom-color">

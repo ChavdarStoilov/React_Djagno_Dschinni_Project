@@ -5,8 +5,7 @@ import { useState } from "react";
 import { useLocalStorage } from "../hooks/CustomLocalUse"
 
 
-export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
-    const [ShopCart, setShopCart] = useLocalStorage('products', [])
+export default function ShoppingCartModal({ showCartModal, closeCartModal, ordering }) {
 
     const [NewData, setNewDate] = useState(() => {
         const newValue = [];
@@ -18,7 +17,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
             ParseJSON.map((product) => {
                     !newValue[product.id]
                         ? (newValue[product.id] = {
-                                _id: product.id,
+                                id: product.id,
                                 name: product.name,
                                 price: product.price,
                                 counter: 1,
@@ -32,10 +31,11 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
     });
 
     const DeleteItemHandler = (deletedItem) => {
-        setNewDate(NewData.filter((item) => { 
-            return item !== deletedItem }));
-        
-        setShopCart(NewData)
+        const DataAfterDelete = NewData.filter((item) => { 
+            return item !== deletedItem })
+
+        setNewDate(DataAfterDelete);
+        ordering('delete', DataAfterDelete);
     }
 
     return (
