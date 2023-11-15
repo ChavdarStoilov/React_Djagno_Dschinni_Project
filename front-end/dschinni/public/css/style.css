@@ -1108,10 +1108,8 @@ button {
 .price {
     width: 100px;
 }
-.counter {
-    width: 80px;
-}
-.actions {
+
+.actions, .counter {
     text-align: center;
 }
 

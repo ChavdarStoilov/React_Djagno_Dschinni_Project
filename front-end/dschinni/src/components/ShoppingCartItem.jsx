@@ -1,14 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
-export default function ShoppingCartItem({
-    data,
-    deleteItem
-}) {
-
+export default function ShoppingCartItem({ data, deleteItem }) {
     const Deletion = () => {
         deleteItem(data);
-    }
+    };
     return (
         <tr>
             <td data-th="Product">
@@ -30,18 +26,12 @@ export default function ShoppingCartItem({
             <td data-th="Price" className="table-custom-color price">
                 {data.price} Лв.
             </td>
-            <td data-th="Quantity">
-                <input
-                    type="number"
-                    className="form-control text-center counter"
-                    defaultValue={data.counter}
-                />
-            </td>
+            <td data-th="Quantity" className="table-custom-color counter">{data.counter}</td>
             <td data-th="Subtotal" className="text-center table-custom-color">
                 {data.price * data.counter} Лв.
             </td>
             <td className="actions" data-th="">
-                <FontAwesomeIcon icon={faTrashAlt} onClick={Deletion}/>
+                <FontAwesomeIcon icon={faTrashAlt} onClick={Deletion} />
             </td>
         </tr>
     );
