@@ -2,8 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShoppingCartItem({
-    data
+    data,
+    deleteItem
 }) {
+
+    const Deletion = () => {
+        deleteItem(data);
+    }
     return (
         <tr>
             <td data-th="Product">
@@ -36,7 +41,7 @@ export default function ShoppingCartItem({
                 {data.price * data.counter} Лв.
             </td>
             <td className="actions" data-th="">
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <FontAwesomeIcon icon={faTrashAlt} onClick={Deletion}/>
             </td>
         </tr>
     );

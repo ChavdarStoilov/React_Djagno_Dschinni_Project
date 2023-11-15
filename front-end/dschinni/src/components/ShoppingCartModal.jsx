@@ -27,7 +27,10 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
 
     });
 
-    console.log(NewData);
+    const DeleteItemHandler = (deletedItem) => {
+        setNewDate(NewData.filter((item) => { 
+            return item !== deletedItem }));
+    }
 
     return (
         <>
@@ -64,6 +67,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
                                 <ShoppingCartItem
                                     key={product.id}
                                     data={product}
+                                    deleteItem={DeleteItemHandler}
                                 />
                             ))}
                         </tbody>
