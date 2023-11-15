@@ -1103,3 +1103,28 @@ button {
 .actions {
     text-align: center;
 }
+
+.no-cart-items {
+    color: white;
+    margin: 30% 30%;
+    width: 100%;
+}
+
+.fa-circle-check {
+    font-size: 60px;
+    margin-bottom: 18px;
+}
+
+.success-msg-checkout {
+    text-align: center;
+    margin: 30% 30%;
+}
+
+.modal-header {
+    align-items: center;
+}
+.fa-circle-xmark {
+    color: rgb(212, 34, 34);
+    font-size: 24px;
+    cursor: pointer;
+}

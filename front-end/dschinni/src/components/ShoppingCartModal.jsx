@@ -5,10 +5,13 @@ import { useState } from "react";
 import * as api from "../api/api_product"
 import { CartProducts } from "../utils/CartProducts.";
 import SpinnerModal from "./Spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal, ordering }) {
     const [IsLoading, setIsLoading] = useState(false);
+    const [CartMsg, setCartMesg] = useState(<h1 className="no-cart-items">There not have selected items</h1>);
 
     const [NewData, setNewDate] = useState(() => {
         
@@ -43,6 +46,10 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                     ordering('delete',[])
                     setNewDate([])
                     setIsLoading(false);
+                    setCartMesg(<div className="success-msg-checkout">
+                        <FontAwesomeIcon icon={faCheckCircle} className="success_msg" />
+                        <h1 className="success_msg">Your order was submitted successfully!</h1>
+                    </div>)
                 }
             })
         }
@@ -64,9 +71,9 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                     <Modal.Title className="table-custom-color">
                         Shopping Cart
                     </Modal.Title>
-                    <CloseButton />
+                    <FontAwesomeIcon icon={faTimesCircle} onClick={closeCartModal}/>
                 </Modal.Header>
-                {IsLoading ? <SpinnerModal /> :
+                {IsLoading ? <SpinnerModal /> : NewData.length > 0 ?
                 
                 <Modal.Body>
 
@@ -125,7 +132,9 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                         </tfoot>
                     </table>
                 </Modal.Body>
-                }
+                :   <div className="msg">
+                        {CartMsg}
+                    </div>}
             </Modal>
         </>
     );
