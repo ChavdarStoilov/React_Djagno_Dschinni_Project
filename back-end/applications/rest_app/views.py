@@ -80,5 +80,12 @@ class LogoutViewEx(views.APIView):
     
 class CheckOutView(generics.CreateAPIView):
     serializer_class = CheckOut
-    permission_classes = (permissions.AllowAny,)
+    # permission_classes = (permissions.AllowAny,)
     
+    
+    def get_serializer(self, instance=None, data=None, many=False, partial=False):
+        print(data)
+        if data is not None:
+            return super(CheckOutView, self).get_serializer(instance=instance, data=data, many=True, partial=partial)
+        else:
+            return super(CheckOutView, self).get_serializer(instance=instance, many=True, partial=partial)

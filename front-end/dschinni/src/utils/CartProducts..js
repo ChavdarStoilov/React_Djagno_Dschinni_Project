@@ -1,19 +1,22 @@
 export const CartProducts = () => {
-    const ondData = JSON.parse(localStorage.getItem('products'))
-    const newData = {
+    const newValue = [];
 
+    const Data = localStorage.getItem("products");
+    const ParseJSON = Data ? JSON.parse(Data) : null;
+
+    if (ParseJSON) {
+        ParseJSON.map((product) => {
+            !newValue[product.id]
+                ? (newValue[product.id] = {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    counter: 1,
+                })
+                : (newValue[product.id].counter += 1);
+        },)
     }
-    
-    ondData.map(product => {
-        !newData[product.id] ? newData[product.id] = {
-            _id:product.id,
-            name:product.name,
-            price:product.price,
-            counter:1
-        } :
-        newData[product.id].counter += 1
-    })
 
-    return newData
+    return newValue;
 
 }

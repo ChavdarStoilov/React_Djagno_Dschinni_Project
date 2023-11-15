@@ -69,6 +69,42 @@ class ShopCart(models.Model):
         on_delete=models.CASCADE,
     )    
     
-    products = models.ManyToManyField(
-        to=Product,
-    )
+    total_price= models.DecimalField(
+        max_digits=14, 
+        decimal_places=2, 
+        blank=True, 
+        null=True)
+    
+class Inventory(models.Model):
+    product  = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )    
+    
+    quantity= models.IntegerField()
+    price= models.DecimalField(
+        max_digits=15,
+        decimal_places=2)
+
+
+class Entry(models.Model):
+    cart= models.ForeignKey(
+        ShopCart, 
+        related_name="entries", 
+        on_delete=models.CASCADE,
+        )
+    inventory= models.ForeignKey(
+        Inventory, related_name="entries", 
+        on_delete=models.CASCADE,
+        )
+    quantity= models.PositiveSmallIntegerField(
+        default=1
+        )
+    price= models.DecimalField(
+        max_digits=14, 
+        decimal_places=2, 
+        blank=True,
+        null=True
+        )

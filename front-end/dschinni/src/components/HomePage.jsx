@@ -1,6 +1,6 @@
 import OfferProducts from "./OfferProducts.jsx";
 import { useEffect, useState } from "react"
-import * as api from "../api/GetAllProducts"
+import * as api from "../api/api_product.js"
 
 import Transitions from "./Transition";
 

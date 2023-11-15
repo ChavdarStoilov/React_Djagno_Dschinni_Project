@@ -1,6 +1,6 @@
 import Transitions from "./Transition";
 import ProductsItem from "./ProductsItem";
-import * as api from "../api/GetAllProducts";
+import * as api from "../api/api_product";
 import { useState, useEffect } from "react";
 
 

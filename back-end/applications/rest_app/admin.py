@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, CustomerComment, ShopCart
+from .models import Product, CustomerComment, ShopCart, Inventory, Entry
 # Register your models here.
 @admin.register(Product)
 class Product(admin.ModelAdmin):
@@ -9,6 +9,22 @@ class Product(admin.ModelAdmin):
 class CustomerComment(admin.ModelAdmin):
     pass
 
+
+@admin.register(Inventory)
+class InventoryAdmin(admin.ModelAdmin):
+    pass
+
+
+class EntryAdmin(admin.TabularInline):
+    model = Entry
+    extra = 0
+    # calls my helper method
+    # exclude redundant field being replaced by helper method
+    exclude = ['subtotal']
+    
 @admin.register(ShopCart)
 class ShopCart(admin.ModelAdmin):
-    pass
+    model = ShopCart
+    inlines = (EntryAdmin,)
+    # calls get_total helper method below
+    exclude = ['total_price']

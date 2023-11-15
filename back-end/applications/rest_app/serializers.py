@@ -1,4 +1,4 @@
-from .models import Product, ShopCart
+from .models import Product, Inventory
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -69,5 +69,5 @@ class LoginSerializer(serializers.Serializer):
 class CheckOut(serializers.ModelSerializer):
     
     class Meta:
-        model = ShopCart
+        model = Inventory
         fields = '__all__'

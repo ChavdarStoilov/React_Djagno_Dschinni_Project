@@ -3,29 +3,15 @@ import Modal from "react-bootstrap/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { useState } from "react";
 import * as api from "../api/api_product"
+import { CartProducts } from "../utils/CartProducts.";
+import ToastAlertModal from "./ToastAlert";
+
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal, ordering }) {
-
+    const [ToastAlert, setToastAlert] = useState(false)
     const [NewData, setNewDate] = useState(() => {
-        const newValue = [];
-
-        const Data = localStorage.getItem("products");
-        const ParseJSON = Data ? JSON.parse(Data) : null;
         
-        if (ParseJSON) {
-            ParseJSON.map((product) => {
-                    !newValue[product.id]
-                        ? (newValue[product.id] = {
-                                id: product.id,
-                                name: product.name,
-                                price: product.price,
-                                counter: 1,
-                            })
-                        : (newValue[product.id].counter += 1);
-                },)
-        }
-
-        return newValue
+        return CartProducts();
 
     });
 
@@ -39,12 +25,27 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
 
 
     const CheckOutHandler = () => {
-
-
+        const Data = CartProducts().filter(function (el) {
+            return el != null;
+          });
+        if (Data.length > 0) {
+            api.Checkout(Data.map(product => ({
+                "quantity": product.counter,
+                "price": product.price,
+                "product": product.id
+            })))
+            .then((result) => {
+                if (result.statu === 201) {
+                    ordering('delete',{})
+                    setToastAlert(true);
+                }
+            })
+        }
     };
 
     return (
         <>
+            {ToastAlert && <ToastAlertModal />}
             <Modal
                 size="lg"
                 show={showCartModal}
@@ -103,9 +104,10 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                                     <a
                                         href="#"
                                         className="btn btn-success btn-block"
+                                        onClick={CheckOutHandler}
                                     >
                                         Checkout{" "}
-                                        <i className="fa fa-angle-right"></i>
+                                        <i className="fa fa-angle-right" ></i>
                                     </a>
                                 </td>
                             </tr>
