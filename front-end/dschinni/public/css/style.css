@@ -1036,7 +1036,7 @@ button {
 }
 
 .spinner-container {
-    margin: 0 45%;
+    margin: 45% 45%;
 }
 @keyframes spinner {
     0% {

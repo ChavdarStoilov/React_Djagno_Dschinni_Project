@@ -4,11 +4,12 @@ import ShoppingCartItem from "./ShoppingCartItem";
 import { useState } from "react";
 import * as api from "../api/api_product"
 import { CartProducts } from "../utils/CartProducts.";
-import ToastAlertModal from "./ToastAlert";
+import SpinnerModal from "./Spinner";
 
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal, ordering }) {
-    const [ToastAlert, setToastAlert] = useState(false)
+    const [IsLoading, setIsLoading] = useState(false);
+
     const [NewData, setNewDate] = useState(() => {
         
         return CartProducts();
@@ -25,40 +26,50 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
 
 
     const CheckOutHandler = () => {
+        setIsLoading(true);
+
         const Data = CartProducts().filter(function (el) {
             return el != null;
           });
         if (Data.length > 0) {
+
             api.Checkout(Data.map(product => ({
                 "quantity": product.counter,
                 "price": product.price,
                 "product": product.id
             })))
             .then((result) => {
-                if (result.statu === 201) {
-                    ordering('delete',{})
-                    setToastAlert(true);
+                if (result.status === 201) {
+                    ordering('delete',[])
+                    setNewDate([])
+                    setIsLoading(false);
                 }
             })
         }
     };
 
+
+
     return (
         <>
-            {ToastAlert && <ToastAlertModal />}
             <Modal
                 size="lg"
                 show={showCartModal}
                 onHide={closeCartModal}
                 aria-labelledby="example-modal-sizes-title-lg"
             >
+                
+
                 <Modal.Header>
                     <Modal.Title className="table-custom-color">
                         Shopping Cart
                     </Modal.Title>
                     <CloseButton />
                 </Modal.Header>
+                {IsLoading ? <SpinnerModal /> :
+                
                 <Modal.Body>
+
                     <table
                         id="cart"
                         className="table table-hover table-condensed"
@@ -114,6 +125,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                         </tfoot>
                     </table>
                 </Modal.Body>
+                }
             </Modal>
         </>
     );
