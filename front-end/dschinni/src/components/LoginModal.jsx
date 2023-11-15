@@ -49,7 +49,7 @@ export default function LoginModal({ close }) {
             <Form onSubmit={onSubmit} className="login-form">
                 {errorServer && <h2 className="error_msg">{errorServer}</h2>}
                 {IsLoading ? (
-                    <SpinnerModal msg="Logging..." />
+                    <SpinnerModal cname="login-loading" msg="Logging..." />
                 ) : (
                     <>
                         <Form.Group className="mb-3">

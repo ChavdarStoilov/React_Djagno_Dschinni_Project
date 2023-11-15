@@ -1038,11 +1038,11 @@ button {
 .spinner-container {
     margin: 45% 45%;
 }
-.spinner-container h1 {
+.login-loading, .register-loading {
     color: #ebad28;
     text-align: center;
     margin-top: 42px;
-    margin-left: -20px;
+    margin-left: -38px;
 }
 @keyframes spinner {
     0% {

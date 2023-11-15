@@ -2,13 +2,13 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import SpinnerModal from "./Spinner";
 import * as api from "../api/auth_api";
 
 export default function RegisterModal({ close }) {
     const [validated, setValidated] = useState(false);
     const [errorServer, setErrorServer] = useState([]);
     const [IsLoading, setIsLoading] = useState(false);
-
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -22,98 +22,119 @@ export default function RegisterModal({ close }) {
             new FormData(event.target)
         );
 
+        setIsLoading(true);
         api.register({ username, email, password })
             .then((result) => {
-                if (result.status >= 400){
-                    setErrorServer(Object.values(result.data).map((key) => key));
-                }else if (result.status === 200){
+                if (result.status >= 400) {
+                    setErrorServer(
+                        Object.values(result.data).map((key) => key)
+                    );
+                } else if (result.status === 200) {
                     UserLoginHendler(result.data);
                     close();
-                };
+                }
             })
             .catch((error) => setErrorServer(error))
             .finally(() => {
                 setIsLoading(false);
-            })
-
+            });
     };
 
     return (
         <>
-
             <Form onSubmit={onSubmit} className="register-from">
-                {IsLoading && <SpinnerModal />}
                 {errorServer && (
                     <ul>
-                        {errorServer.map(error => (<li><h3 className="error_msg">{error}</h3></li>))}
+                        {errorServer.map((error) => (
+                            <li>
+                                <h3 className="error_msg">{error}</h3>
+                            </li>
+                        ))}
                     </ul>
                 )}
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="username" className="form-custom-color">Username</Form.Label>
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Enter username"
-                        name="username"
-                        id="username"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide username.
-                    </Form.Control.Feedback>
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="email" className="form-custom-color">Email address</Form.Label>
-                    <Form.Control
-                        required
-                        type="email"
-                        placeholder="Enter email"
-                        name="email"
-                        id="email"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide email.
-                    </Form.Control.Feedback>
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password" className="form-custom-color">Password</Form.Label>
-                    <Form.Control
-                        required
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        id="password"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide passwod.
-                    </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Row} className="mb-3 register_footer">
-                    <Button
-                        className="close-btn"
-                        variant="primary"
-                        type="button"
-                        onClick={close}
-                    >
-                        Close
-                    </Button>
-                    <Button
-                        className="register-btn"
-                        variant="primary"
-                        type="submit"
-                    >
-                        Register
-                    </Button>
-                </Form.Group>
+                {IsLoading ? (
+                    <SpinnerModal cname="register-loading" msg="Registration..." />
+                ) : (
+                    <>
+                        <Form.Group className="mb-3">
+                            <Form.Label
+                                htmlFor="username"
+                                className="form-custom-color"
+                            >
+                                Username
+                            </Form.Label>
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Enter username"
+                                name="username"
+                                id="username"
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide username.
+                            </Form.Control.Feedback>
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label
+                                htmlFor="email"
+                                className="form-custom-color"
+                            >
+                                Email address
+                            </Form.Label>
+                            <Form.Control
+                                required
+                                type="email"
+                                placeholder="Enter email"
+                                name="email"
+                                id="email"
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide email.
+                            </Form.Control.Feedback>
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label
+                                htmlFor="password"
+                                className="form-custom-color"
+                            >
+                                Password
+                            </Form.Label>
+                            <Form.Control
+                                required
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                id="password"
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide passwod.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group as={Row} className="mb-3 register_footer">
+                            <Button
+                                className="close-btn"
+                                variant="primary"
+                                type="button"
+                                onClick={close}
+                            >
+                                Close
+                            </Button>
+                            <Button
+                                className="register-btn"
+                                variant="primary"
+                                type="submit"
+                            >
+                                Register
+                            </Button>
+                        </Form.Group>
+                    </>
+                )}
             </Form>
         </>
     );

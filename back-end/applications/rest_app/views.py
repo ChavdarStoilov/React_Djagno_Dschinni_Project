@@ -59,6 +59,8 @@ class UserCreateView(views.APIView):
                 token = Token.objects.create(user=user)
                 json = serializer.data
                 json['token'] = token.key
+                sleep(20)
+                
                 return Response(json, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
