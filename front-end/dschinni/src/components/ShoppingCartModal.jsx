@@ -2,7 +2,6 @@ import CloseButton from "react-bootstrap/CloseButton";
 import Modal from "react-bootstrap/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { useState } from "react";
-import { useLocalStorage } from "../hooks/CustomLocalUse"
 
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal, ordering }) {
@@ -23,7 +22,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                                 counter: 1,
                             })
                         : (newValue[product.id].counter += 1);
-                })
+                },)
         }
 
         return newValue
@@ -37,6 +36,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
         setNewDate(DataAfterDelete);
         ordering('delete', DataAfterDelete);
     }
+
 
     return (
         <>
@@ -90,7 +90,9 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                                 </td>
                                 <td colSpan="2" className="hidden-xs"></td>
                                 <td className="hidden-xs text-center table-custom-color">
-                                    <strong>Total $ 5.11</strong>
+                                    <strong>{NewData && 
+                                    NewData.map(product => parseFloat(product.counter > 1 ? product.price * product.counter : product.price)).
+                                    reduceRight((acc, cur) => acc + cur, 0)} Лв.</strong>
                                 </td>
                                 <td>
                                     <a
