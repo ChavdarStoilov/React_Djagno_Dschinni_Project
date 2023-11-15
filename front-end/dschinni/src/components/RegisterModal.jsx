@@ -4,11 +4,14 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import SpinnerModal from "./Spinner";
 import * as api from "../api/auth_api";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function RegisterModal({ close }) {
     const [validated, setValidated] = useState(false);
-    const [errorServer, setErrorServer] = useState([]);
+    const [errorServer, setErrorServer] = useState(false);
     const [IsLoading, setIsLoading] = useState(false);
+    const [successMsg, setSuccessMsg] = useState(null);
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -23,15 +26,20 @@ export default function RegisterModal({ close }) {
         );
 
         setIsLoading(true);
+        
         api.register({ username, email, password })
             .then((result) => {
-                if (result.status >= 400) {
+                if (result.status === 400) {
                     setErrorServer(
                         Object.values(result.data).map((key) => key)
                     );
-                } else if (result.status === 200) {
-                    UserLoginHendler(result.data);
-                    close();
+                } else if (result.status === 201) {
+                    console.log(errorServer);
+                    setSuccessMsg(
+                    <div className="success-msg-checkout">
+                        <FontAwesomeIcon icon={faCheckCircle} className="success_msg" />
+                        <h1 className="success_msg-reg">Your registration was successfully!</h1>
+                    </div>)
                 }
             })
             .catch((error) => setErrorServer(error))
@@ -43,7 +51,8 @@ export default function RegisterModal({ close }) {
     return (
         <>
             <Form onSubmit={onSubmit} className="register-from">
-                {errorServer && (
+                
+                {/* {errorServer && 
                     <ul>
                         {errorServer.map((error) => (
                             <li>
@@ -51,10 +60,11 @@ export default function RegisterModal({ close }) {
                             </li>
                         ))}
                     </ul>
-                )}
+                }
+                 */}
                 {IsLoading ? (
                     <SpinnerModal cname="register-loading" msg="Registration..." />
-                ) : (
+                ) : !successMsg ? (
                     <>
                         <Form.Group className="mb-3">
                             <Form.Label
@@ -134,7 +144,7 @@ export default function RegisterModal({ close }) {
                             </Button>
                         </Form.Group>
                     </>
-                )}
+                ) : successMsg}
             </Form>
         </>
     );
