@@ -1110,7 +1110,7 @@ button {
     width: 100%;
 }
 
-.fa-circle-check {
+.fa-circle-check, .fa-circle-xmark {
     font-size: 60px;
     margin-bottom: 18px;
 }
@@ -1120,11 +1120,17 @@ button {
     margin: 30% 30%;
 }
 
+.error-msg-checkout {
+    text-align: center;
+    margin: 30% 30%;
+}
+
 .modal-header {
     align-items: center;
 }
-.fa-circle-xmark {
+.fa-xmark {
     color: rgb(212, 34, 34);
     font-size: 24px;
     cursor: pointer;
 }
+

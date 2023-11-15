@@ -6,7 +6,7 @@ import * as api from "../api/api_product"
 import { CartProducts } from "../utils/CartProducts.";
 import SpinnerModal from "./Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faTimesCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal, ordering }) {
@@ -37,9 +37,9 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
         if (Data.length > 0) {
 
             api.Checkout(Data.map(product => ({
-                "quantity": product.counter,
-                "price": product.price,
-                "product": product.id
+                // "quantity": product.counter,
+                // "price": product.price,
+                // "product": product.id
             })))
             .then((result) => {
                 if (result.status === 201) {
@@ -51,7 +51,18 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                         <h1 className="success_msg">Your order was submitted successfully!</h1>
                     </div>)
                 }
+                else {
+                    ordering('delete',[])
+                    setNewDate([])
+                    setIsLoading(false);
+                    setCartMesg(<div className="error-msg-checkout">
+                        <FontAwesomeIcon icon={faTimesCircle} className="error_msg" />
+                        <h1 className="error_msg">Your order was not submitted successfully!</h1>
+                        <h2 className="error_msg">Please try again later!</h2>
+                    </div>)
+                }
             })
+            .catch((error) => console.log(error))
         }
     };
 
@@ -71,7 +82,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                     <Modal.Title className="table-custom-color">
                         Shopping Cart
                     </Modal.Title>
-                    <FontAwesomeIcon icon={faTimesCircle} onClick={closeCartModal}/>
+                    <FontAwesomeIcon icon={faTimes} onClick={closeCartModal}/>
                 </Modal.Header>
                 {IsLoading ? <SpinnerModal /> : NewData.length > 0 ?
                 
