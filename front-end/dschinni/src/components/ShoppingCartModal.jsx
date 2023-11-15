@@ -2,7 +2,7 @@ import CloseButton from "react-bootstrap/CloseButton";
 import Modal from "react-bootstrap/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { useState } from "react";
-
+import * as api from "../api/api_product"
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal, ordering }) {
 
@@ -37,6 +37,11 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
         ordering('delete', DataAfterDelete);
     }
 
+
+    const CheckOutHandler = () => {
+
+
+    };
 
     return (
         <>

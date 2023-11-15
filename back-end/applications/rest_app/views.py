@@ -1,5 +1,6 @@
 from .models import Product
-from .serializers import ProductListSerializer, LoginSerializer, RegisterUserSerializer, UserListSerializer
+from .serializers import ProductListSerializer, LoginSerializer, RegisterUserSerializer, \
+    UserListSerializer, CheckOut
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import views
@@ -16,7 +17,6 @@ User_Model = get_user_model()
 
 class UserProfileView(generics.ListAPIView, generics.UpdateAPIView):
     serializer_class = UserListSerializer
-    permission_classes = (permissions.IsAuthenticated,)
     queryset = User_Model
     
     def list(self, request, *args, **kwargs):
@@ -77,3 +77,8 @@ class LogoutViewEx(views.APIView):
             return Response({"success": _("Successfully logged out.")},status=status.HTTP_200_OK)
         
         return Response({'msg': "There not have login user!"}, status=status.HTTP_400_BAD_REQUEST)
+    
+class CheckOutView(generics.CreateAPIView):
+    serializer_class = CheckOut
+    permission_classes = (permissions.AllowAny,)
+    
