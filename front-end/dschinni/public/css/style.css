@@ -1038,6 +1038,12 @@ button {
 .spinner-container {
     margin: 45% 45%;
 }
+.spinner-container h1 {
+    color: #ebad28;
+    text-align: center;
+    margin-top: 42px;
+    margin-left: -20px;
+}
 @keyframes spinner {
     0% {
       transform: rotate(0deg);
@@ -1134,3 +1140,6 @@ button {
     cursor: pointer;
 }
 
+.buy-btn {
+    cursor: pointer;
+}

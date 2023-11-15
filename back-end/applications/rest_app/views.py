@@ -10,6 +10,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth import get_user_model, login, logout
 from django.utils.translation import gettext_lazy as _
+from time import sleep
 
 User_Model = get_user_model()
 
@@ -40,6 +41,7 @@ class LoginView(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         
         login(request, user)
+        sleep(20)
         return Response({
             'token':token.key,
             'user_id':user.pk,

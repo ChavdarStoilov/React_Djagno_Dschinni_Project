@@ -37,9 +37,9 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
         if (Data.length > 0) {
 
             api.Checkout(Data.map(product => ({
-                // "quantity": product.counter,
-                // "price": product.price,
-                // "product": product.id
+                "quantity": product.counter,
+                "price": product.price,
+                "product": product.id
             })))
             .then((result) => {
                 if (result.status === 201) {

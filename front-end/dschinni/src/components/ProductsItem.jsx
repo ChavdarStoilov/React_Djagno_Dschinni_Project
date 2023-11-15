@@ -30,7 +30,7 @@ export default function ProductsItem({
                     <div className="buy_bt">
                         <ul>
                             <li className="active">
-                                <a onClick={AddInOrderHandler}>Buy Now</a>
+                                <a onClick={AddInOrderHandler} className="buy-btn">Buy Now</a>
                             </li>
                         </ul>
                     </div>

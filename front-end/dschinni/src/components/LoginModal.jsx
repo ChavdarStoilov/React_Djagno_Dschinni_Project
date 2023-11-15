@@ -31,12 +31,12 @@ export default function LoginModal({ close }) {
 
         api.login({ username, password })
             .then((result) => {
-                if (result.status === 400){
+                if (result.status === 400) {
                     setErrorServer(result.data.non_field_errors);
-                }else if (result.status === 200){
+                } else if (result.status === 200) {
                     UserLoginHendler(result.data);
                     close();
-                };
+                }
             })
             .catch((error) => setErrorServer(error))
             .finally(() => {
@@ -47,56 +47,71 @@ export default function LoginModal({ close }) {
     return (
         <>
             <Form onSubmit={onSubmit} className="login-form">
-                {IsLoading && <SpinnerModal />}
                 {errorServer && <h2 className="error_msg">{errorServer}</h2>}
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="username" className="form-custom-color">Username</Form.Label>
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Enter username"
-                        name="username"
-                        id="username"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide username.
-                    </Form.Control.Feedback>
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
+                {IsLoading ? (
+                    <SpinnerModal msg="Logging..." />
+                ) : (
+                    <>
+                        <Form.Group className="mb-3">
+                            <Form.Label
+                                htmlFor="username"
+                                className="form-custom-color"
+                            >
+                                Username
+                            </Form.Label>
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Enter username"
+                                name="username"
+                                id="username"
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide username.
+                            </Form.Control.Feedback>
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="password" className="form-custom-color">Password</Form.Label>
-                    <Form.Control
-                        required
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        id="password"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please provide passwod.
-                    </Form.Control.Feedback>
-                </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label
+                                htmlFor="password"
+                                className="form-custom-color"
+                            >
+                                Password
+                            </Form.Label>
+                            <Form.Control
+                                required
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                id="password"
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide passwod.
+                            </Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group as={Row} className="mb-3 login_footer">
-                    <Button
-                        className="close-btn"
-                        variant="primary"
-                        type="button"
-                        onClick={close}
-                    >
-                        Close
-                    </Button>
-                    <Button
-                        className="register-btn"
-                        variant="primary"
-                        type="submit"
-                    >
-                        Login
-                    </Button>
-                </Form.Group>
+                        <Form.Group as={Row} className="mb-3 login_footer">
+                            <Button
+                                className="close-btn"
+                                variant="primary"
+                                type="button"
+                                onClick={close}
+                            >
+                                Close
+                            </Button>
+                            <Button
+                                className="register-btn"
+                                variant="primary"
+                                type="submit"
+                            >
+                                Login
+                            </Button>
+                        </Form.Group>
+                    </>
+                )}
             </Form>
         </>
     );
