@@ -3,7 +3,6 @@ import ProductsItem from "./ProductsItem";
 import * as api from "../api/GetAllProducts";
 import { useState, useEffect } from "react";
 import { useLocalStorage } from "../hooks/CustomLocalUse"
-import { CartProducts } from "../utils/CartProducts.";
 
 
 export default function Products() {

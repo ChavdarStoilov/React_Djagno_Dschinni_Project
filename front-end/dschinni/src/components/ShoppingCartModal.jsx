@@ -2,8 +2,12 @@ import CloseButton from "react-bootstrap/CloseButton";
 import Modal from "react-bootstrap/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { useState } from "react";
+import { useLocalStorage } from "../hooks/CustomLocalUse"
+
 
 export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
+    const [ShopCart, setShopCart] = useLocalStorage('products', [])
+
     const [NewData, setNewDate] = useState(() => {
         const newValue = [];
 
@@ -30,6 +34,8 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal }) {
     const DeleteItemHandler = (deletedItem) => {
         setNewDate(NewData.filter((item) => { 
             return item !== deletedItem }));
+        
+        setShopCart(NewData)
     }
 
     return (
