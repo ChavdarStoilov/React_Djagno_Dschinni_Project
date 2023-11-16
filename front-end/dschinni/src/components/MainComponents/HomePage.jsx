@@ -4,6 +4,7 @@ import * as api from "../../api/api_product.js"
 import logo from "../../assets/logo.webp";
 import Transitions from "../UtilsComponents/Transition.jsx";
 
+
 export default function HomePage() {
     const [ListOfProducts, SetListOfProducts] = useState([])
 

@@ -1,10 +1,28 @@
+import { AuthContext } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function PromoProductItem({
     index,
     name,
     desc,
     oldPrice,
     newPrice,
+    showUser
 }) {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const BuyHandler = () => {
+        if (user.email) {
+            navigate("products");
+        }
+        else {
+            showUser();
+        }
+    }
+
     return (
         <div className={index > 0 ? "carousel-item": "carousel-item active"}>
             <div className="container">
@@ -17,7 +35,9 @@ export default function PromoProductItem({
                                 <span className="old-price">{oldPrice} лв.</span>
                                 <span className="new-price">{newPrice} лв.</span>
                             </div>
-                            <a href="#">Buy Now</a>                            
+                            <Link 
+                            onClick={BuyHandler} 
+                            >Buy Now</Link>                            
                         </div>
                     </div>
                     <div className="col-sm-6">
