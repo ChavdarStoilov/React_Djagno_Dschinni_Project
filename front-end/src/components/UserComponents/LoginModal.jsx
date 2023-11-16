@@ -52,7 +52,7 @@ export default function LoginModal({ close }) {
                 <FontAwesomeIcon icon={faTimes} onClick={close} className="user-modal-title-close"/>
                 {errorServer && <h2 className="error_msg">{errorServer}</h2>}
                 {IsLoading ? (
-                    <SpinnerModal cname="login-loading" msg="Logging..." />
+                    <SpinnerModal cname="loginLoading" msg="Logging..." />
                 ) : (
                     <>
                         <Form.Group className="mb-3">

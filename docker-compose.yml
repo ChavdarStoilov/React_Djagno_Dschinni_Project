@@ -4,6 +4,7 @@ name: dschinni
 services:
 
   web:
+    image: cvstoilov/dschinni
     container_name: server
     # image: cvstoilov/car_service
     build:
@@ -13,6 +14,7 @@ services:
       - "8000:8000"
       
   client:
+    image: cvstoilov/dschinni
     container_name: client
     build:
       dockerfile: ./front-end/Dockerfile

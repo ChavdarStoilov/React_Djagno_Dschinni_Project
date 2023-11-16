@@ -10,7 +10,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth import get_user_model, login, logout
 from django.utils.translation import gettext_lazy as _
-from time import sleep
+# from time import sleep
 
 User_Model = get_user_model()
 
@@ -39,7 +39,7 @@ class ImageListProductView(generics.ListAPIView):
     def list(self, request, *args, **kwargs):
         queryset = ProductImages.objects.all().filter(product_id=kwargs['pk'])
         serializer = self.get_serializer(queryset, many=True)
-        sleep(40)
+        # sleep(40)
         return Response(serializer.data)
     
     
@@ -53,7 +53,7 @@ class LoginView(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         
         login(request, user)
-        sleep(20)
+        # sleep(20)
         return Response({
             'token':token.key,
             'user_id':user.pk,

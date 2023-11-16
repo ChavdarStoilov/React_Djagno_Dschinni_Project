@@ -1024,6 +1024,7 @@ button {
 /* Auth Forms */
 .modal-content {
     background-color: rgb(0, 0, 0, 0.7);
+    /* width: 600px; */
 }
 .register-from, .login-form {
     padding: 30px;
@@ -1036,29 +1037,6 @@ button {
     gap: 20px;
 }
 
-
-.login-loading, .register-loading {
-    color: #ebad28;
-    text-align: center;
-    margin-top: 42px;
-    margin-left: -38px;
-}
-@keyframes spinner {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 10px solid #ebad28; 
-    border-top: 10px solid #383636; 
-    border-radius: 50%;
-    animation: spinner 1.5s linear infinite;
-  }
 
 .modal-dialog{
     margin: 150px auto 0px;
@@ -1075,9 +1053,9 @@ button {
     
 }
 
-.success_msg-reg {
-    width: 200px;
-}
+/* .success_msg-reg {
+    width: 250px;
+} */
 
 
 .col-sm-2  > img {
@@ -1116,7 +1094,7 @@ button {
 .no-cart-items {
     color: white;
     margin: 30% 30%;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .fa-circle-check, .fa-circle-xmark {
