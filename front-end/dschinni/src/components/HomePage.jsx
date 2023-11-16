@@ -10,7 +10,10 @@ export default function HomePage() {
     useEffect ( () => {
         
         api.ListOfProducts()
-        .then( (result) => SetListOfProducts(result.data))
+        .then( (result) => {
+            console.log(result);
+            SetListOfProducts(result.data)
+        })
         .catch( (err) => console.log(err) );
 
     }, [])

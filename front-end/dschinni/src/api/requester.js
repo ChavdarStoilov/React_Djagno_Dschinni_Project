@@ -1,9 +1,12 @@
 const request = async (method, url, data) => {
 
     try {
-        const user = localStorage.getItem('auth')
+        let user = localStorage.getItem('auth')
+
+        user = user == null ? "{}" : user
 
         const token = user != "{}" ? "Token " + JSON.parse(user).token : ""
+
         let builderRequest;
 
         if (method === 'GET') {
