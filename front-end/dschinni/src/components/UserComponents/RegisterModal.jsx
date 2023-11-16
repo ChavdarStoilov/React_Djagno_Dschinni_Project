@@ -2,20 +2,17 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import * as api from "../api/auth_api";
-import { AuthContext } from "../contexts/AuthContext";
-import { useContext } from "react";
-import SpinnerModal from "./Spinner";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import SpinnerModal from "../UitilsComponents/Spinner";
+import * as api from "../../api/auth_api";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-
-export default function LoginModal({ close }) {
-    const [errorServer, setErrorServer] = useState();
-    const { UserLoginHendler } = useContext(AuthContext);
+export default function RegisterModal({ close }) {
+    const [errorServer, setErrorServer] = useState(false);
     const [IsLoading, setIsLoading] = useState(false);
+    const [successMsg, setSuccessMsg] = useState(null);
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
 
         const form = event.currentTarget;
@@ -23,20 +20,25 @@ export default function LoginModal({ close }) {
         if (form.checkValidity() === false) {
             event.stopPropagation();
         }
-        const { username, password } = Object.fromEntries(
+        const { username, email, password } = Object.fromEntries(
             new FormData(event.target)
         );
 
+        setErrorServer(false)
         setIsLoading(true);
-        setErrorServer(false);
-
-        api.login({ username, password })
+        
+        api.register({ username, email, password })
             .then((result) => {
                 if (result.status === 400) {
-                    setErrorServer(result.data.non_field_errors);
-                } else if (result.status === 200) {
-                    UserLoginHendler(result.data);
-                    close();
+                    setErrorServer(
+                        Object.values(result.data).map((key) => key)
+                    );
+                } else if (result.status === 201) {
+                    setSuccessMsg(
+                    <div className="success-msg-checkout">
+                        <FontAwesomeIcon icon={faCheckCircle} className="success_msg" />
+                        <h1 className="success_msg-reg">Your registration was successfully!</h1>
+                    </div>)
                 }
             })
             .catch((error) => setErrorServer(error))
@@ -47,13 +49,23 @@ export default function LoginModal({ close }) {
 
     return (
         <>
-            <Form onSubmit={onSubmit} className="login-form">
-                <h1 className="form-custom-color user-modal-title">Login</h1>
+            <Form onSubmit={onSubmit} className="register-from">
+                <h1 className="form-custom-color user-modal-title">Register</h1>
                 <FontAwesomeIcon icon={faTimes} onClick={close} className="user-modal-title-close"/>
-                {errorServer && <h2 className="error_msg">{errorServer}</h2>}
+                
+                {errorServer && 
+                    <ul>
+                        {errorServer.map((error) => (
+                            <li>
+                                <h3 className="error_msg">{error}</h3>
+                            </li>
+                        ))}
+                    </ul>
+                }
+                
                 {IsLoading ? (
-                    <SpinnerModal cname="login-loading" msg="Logging..." />
-                ) : (
+                    <SpinnerModal cname="register-loading" msg="Registration..." />
+                ) : !successMsg ? (
                     <>
                         <Form.Group className="mb-3">
                             <Form.Label
@@ -76,7 +88,27 @@ export default function LoginModal({ close }) {
                                 We'll never share your email with anyone else.
                             </Form.Text>
                         </Form.Group>
-
+                        <Form.Group className="mb-3">
+                            <Form.Label
+                                htmlFor="email"
+                                className="form-custom-color"
+                            >
+                                Email address
+                            </Form.Label>
+                            <Form.Control
+                                required
+                                type="email"
+                                placeholder="Enter email"
+                                name="email"
+                                id="email"
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide email.
+                            </Form.Control.Feedback>
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label
                                 htmlFor="password"
@@ -95,8 +127,7 @@ export default function LoginModal({ close }) {
                                 Please provide passwod.
                             </Form.Control.Feedback>
                         </Form.Group>
-
-                        <Form.Group as={Row} className="mb-3 login_footer">
+                        <Form.Group as={Row} className="mb-3 register_footer">
                             <Button
                                 className="close-btn"
                                 variant="primary"
@@ -110,11 +141,11 @@ export default function LoginModal({ close }) {
                                 variant="primary"
                                 type="submit"
                             >
-                                Login
+                                Register
                             </Button>
                         </Form.Group>
                     </>
-                )}
+                ) : successMsg}
             </Form>
         </>
     );

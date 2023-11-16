@@ -1,9 +1,9 @@
 import Modal from "react-bootstrap/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { useState } from "react";
-import * as api from "../api/api_product"
-import { CartProducts } from "../utils/CartProducts.";
-import SpinnerModal from "./Spinner";
+import * as api from "../../api/api_product"
+import { CartProducts } from "../../utils/CartProducts.";
+import SpinnerModal from "../UitilsComponents/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faTimesCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 

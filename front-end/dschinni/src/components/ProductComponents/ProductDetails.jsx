@@ -1,8 +1,8 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ProductImage from "./ProductImage";
-import SpinnerModal from "./Spinner"
-import * as api from "../api/api_product"
+import SpinnerModal from "../UitilsComponents/Spinner"
+import * as api from "../../api/api_product"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCaretRight, faCaretLeft, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
@@ -93,7 +93,7 @@ export default function ProductDetails({
                 <FontAwesomeIcon icon={faTimes} onClick={close} />
             </Modal.Header>
             <Modal.Body className="details-custom-color">
-                {LoadingModal ? <SpinnerModal cname={'details-spinner'}/> : 
+                {LoadingModal ? <SpinnerModal cname={'detailsSpinner'}/> : 
                 <>
                     {ShowPictures ? <>
                         <FontAwesomeIcon icon={faArrowLeft} onClick={previousImage}/>

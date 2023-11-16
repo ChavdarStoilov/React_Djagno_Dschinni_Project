@@ -6,10 +6,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import ShoppingCartModal from "./ShoppingCartModal";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faSignOutAlt, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import * as api from '../api/auth_api'
+import * as api from '../../api/auth_api'
 
 export default function Navigation({
     ordering
