@@ -348,15 +348,12 @@ button {
 .banner_section {
     width: 100%;
     background-image: url(../images/banner.webp);
-    height: auto;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
     /* padding: 120px 0px 90px; */
     /* height: 100vh; */
 }
 
 .banner-inner {
-    background-color: rgba(191, 156, 189, 0.4);
+    background-color: rgba(28, 28, 28, 0.4);
   
   }
 
@@ -364,7 +361,7 @@ button {
     width: 100%;
     margin: 0 auto;
     font-size: 50px;
-    color: #000;
+    color: #dead44;
     line-height: 90px;
     padding-top: 20px;
     font-family: 'Great Vibes', cursive;
@@ -378,7 +375,7 @@ button {
     width: 100%;
     float: left;
     font-size: 14px;
-    color: #000;
+    color: whitesmoke;
     margin: 20px 0px;
 }
 
@@ -457,8 +454,10 @@ button {
     background-color: #ffffff;
     height: auto;
     border: 1px solid #7d7d7c;
+    border-radius: 20px;
     padding: 20px 0px 0px 0px;
     margin-top: 30px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .product_box:hover {
@@ -496,6 +495,8 @@ button {
     background-color: #000;
     height: auto;
     padding: 20px 10px 13px 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .buy_bt {

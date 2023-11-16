@@ -11,7 +11,6 @@ export default function HomePage() {
         
         api.ListOfProducts()
         .then( (result) => {
-            console.log(result);
             SetListOfProducts(result.data)
         })
         .catch( (err) => console.log(err) );
