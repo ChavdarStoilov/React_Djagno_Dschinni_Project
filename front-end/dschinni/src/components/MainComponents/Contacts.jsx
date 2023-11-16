@@ -1,4 +1,4 @@
-import Transitions from "./Transition";
+import Transitions from "../UtilsComponents/Transition";
 
 export default function Contacts() {
     return (

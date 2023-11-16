@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ProductImage from "./ProductImage";
-import SpinnerModal from "../UitilsComponents/Spinner"
+import SpinnerModal from "../UtilsComponents/Spinner"
 import * as api from "../../api/api_product"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCaretRight, faCaretLeft, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";

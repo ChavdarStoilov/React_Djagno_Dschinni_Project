@@ -1,10 +1,10 @@
-import Navigation from "./components/NavigationBar";
-import Products from "./components/Products";
-import Contacts from "./components/Contacts";
+import Navigation from "./components/MainComponents/NavigationComponents/NavigationBar";
+import Products from "./components/ProductComponents/Products";
+import Contacts from "./components/MainComponents/Contacts";
 import { Routes, Route, useLocation } from "react-router-dom";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/MainComponents/HomePage";
 import { AnimatePresence } from "framer-motion";
-import About from "./components/aboutUs";
+import About from "./components/MainComponents/AboutUs";
 import { AuthContext } from "./contexts/AuthContext";
 import { useLocalStorage } from "./hooks/CustomLocalUse"
 

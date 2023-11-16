@@ -1,4 +1,4 @@
-import OfferProducts from "./OfferProducts.jsx";
+import OfferProducts from "./OfferProducts";
 import { useEffect, useState } from "react"
 import * as api from "../api/GetAllProducts"
 

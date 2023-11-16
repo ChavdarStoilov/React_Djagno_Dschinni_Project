@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import SpinnerModal from "../UitilsComponents/Spinner";
+import SpinnerModal from "../UtilsComponents/Spinner";
 import * as api from "../../api/auth_api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimes } from "@fortawesome/free-solid-svg-icons";

@@ -1,8 +1,8 @@
-import OfferProducts from "./OfferProducts.jsx";
+import OfferProducts from "../ProductComponents/OfferProducts";
 import { useEffect, useState } from "react"
 import * as api from "../../api/api_product.js"
-import logo from "../assets/logo.webp";
-import Transitions from "./Transition";
+import logo from "../../assets/logo.webp";
+import Transitions from "../UtilsComponents/Transition.jsx";
 
 export default function HomePage() {
     const [ListOfProducts, SetListOfProducts] = useState([])

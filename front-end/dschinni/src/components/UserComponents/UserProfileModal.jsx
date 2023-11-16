@@ -1,7 +1,7 @@
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useState, useEffect } from "react";
 import * as api from "../../api/auth_api";
-import SpinnerModal from "../UitilsComponents/Spinner";
+import SpinnerModal from "../UtilsComponents/Spinner";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";

@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import * as api from "../../api/auth_api";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
-import SpinnerModal from "../UitilsComponents/Spinner";
+import SpinnerModal from "../UtilsComponents/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
