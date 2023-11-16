@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ProductDetails from "./ProductDetails";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function ProductsItem({
     id,
@@ -13,23 +14,30 @@ export default function ProductsItem({
     kit,
     stock,
     order,
+    showUserModal
 }) {
     const [ShowDatails, setShowDetails] = useState(false);
     const [SuccessAdded, setSuccsessAdded] = useState(false);
+    const { user } = useContext(AuthContext);
+    
 
     const AddInOrderHandler = () => {
-        setSuccsessAdded(true);
-        const data = {
-            id: id,
-            name: name,
-            price: price,
-        };
-        order(data);
+        if (user.email) {    
+            setSuccsessAdded(true);
+            const data = {
+                id: id,
+                name: name,
+                price: price,
+            };
+            order(data);
 
-        setTimeout(() => {
-            setSuccsessAdded(false);
-          }, 2000);
-        
+            setTimeout(() => {
+                setSuccsessAdded(false);
+            }, 2000);
+        }
+        else [
+            showUserModal()
+        ]
         
     };
 

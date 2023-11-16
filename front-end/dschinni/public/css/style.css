@@ -538,13 +538,13 @@ button {
     text-align: right;
 }
 .old-price{ 
-    font-size:15px;  
+    font-size:24px;  
     text-decoration: line-through;  
     color:grey;
 }
 .new-price{  
     color:red; 
-    font-size:30px; 
+    font-size:38px; 
     line-height: 1.1; 
 }
 
@@ -1036,12 +1036,7 @@ button {
     gap: 20px;
 }
 
-/* .spinner-container {
-    margin: 45% 45%;
-}
-.details-spinner {
-    margin: 30% 45%;
-} */
+
 .login-loading, .register-loading {
     color: #ebad28;
     text-align: center;
