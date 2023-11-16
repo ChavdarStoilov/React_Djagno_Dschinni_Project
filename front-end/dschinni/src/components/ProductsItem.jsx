@@ -1,5 +1,7 @@
 import { useState } from "react";
 import ProductDetails from "./ProductDetails";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProductsItem({
     id,
@@ -13,13 +15,22 @@ export default function ProductsItem({
     order,
 }) {
     const [ShowDatails, setShowDetails] = useState(false);
+    const [SuccessAdded, setSuccsessAdded] = useState(false);
+
     const AddInOrderHandler = () => {
+        setSuccsessAdded(true);
         const data = {
             id: id,
             name: name,
             price: price,
         };
         order(data);
+
+        setTimeout(() => {
+            setSuccsessAdded(false);
+          }, 2000);
+        
+        
     };
 
     const handleCloseDetailsModal = () => setShowDetails(false);
@@ -51,7 +62,7 @@ export default function ProductsItem({
                                         onClick={AddInOrderHandler}
                                         className="buy-btn"
                                     >
-                                        Buy Now
+                                        {SuccessAdded ? <FontAwesomeIcon icon={faCheck} style={{color: "#66ff4a",}} /> : "Buy Now"}
                                     </a>
                                 </li>
                                 <li className="active">
