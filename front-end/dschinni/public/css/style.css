@@ -1088,7 +1088,8 @@ button {
 }
 
 .table-custom-color,
-.form-custom-color {
+.form-custom-color,
+.details-custom-color {
     color: #f1c76c;
 }
 
@@ -1150,4 +1151,14 @@ button {
 
 .no-item-msg {
     margin: 5% 41%;
+}
+
+
+.modal-dialog-centered {
+    margin-top: -10px;
+}
+
+.details-custom-titles,
+.stock-items {
+    text-align: center;
 }

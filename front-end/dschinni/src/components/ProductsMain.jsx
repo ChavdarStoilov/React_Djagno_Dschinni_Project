@@ -15,7 +15,6 @@ export default function ProductsMain ({}) {
 
     }, [])
 
-    // const ordered_lsit = ListOfProducts.sort(function(a, b){return b.normal_price - a.normal_price})
     return (
         <>
             <OfferProducts 

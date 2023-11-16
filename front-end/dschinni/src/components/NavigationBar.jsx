@@ -63,9 +63,9 @@ export default function Navigation({
                 <div className="container-fluid">
                     <nav className="navbar navbar-light bg-light justify-content-between">
                         <div>
-                            <a className="logo" href="index.html">
+                            <Link className="logo" to="/">
                                 <img src={logo} className="logo" />
-                            </a>
+                            </Link>
                         </div>
                         <Navbar expand="lg" className="bg-body-tertiary">
                             <Container>

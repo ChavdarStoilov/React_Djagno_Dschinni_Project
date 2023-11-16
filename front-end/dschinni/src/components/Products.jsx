@@ -47,7 +47,7 @@ export default function Products({
                                                     ? product.promo_price
                                                     : product.normal_price
                                             }
-                                            desc={product.description}
+                                            desc={product.descrition}
                                             techDecs={product.technical_details}
                                             kit={product.kit_scope}
                                             stock={product.stock}

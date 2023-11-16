@@ -1,4 +1,3 @@
-import CloseButton from "react-bootstrap/CloseButton";
 import Modal from "react-bootstrap/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { useState } from "react";
