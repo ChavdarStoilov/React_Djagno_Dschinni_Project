@@ -1039,6 +1039,9 @@ button {
 .spinner-container {
     margin: 45% 45%;
 }
+.details-spinner {
+    margin: 30% 45%;
+}
 .login-loading, .register-loading {
     color: #ebad28;
     text-align: center;

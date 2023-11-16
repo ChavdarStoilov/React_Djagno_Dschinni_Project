@@ -38,8 +38,8 @@ class ImageListProductView(generics.ListAPIView):
     
     def list(self, request, *args, **kwargs):
         queryset = ProductImages.objects.all().filter(product_id=kwargs['pk'])
-
         serializer = self.get_serializer(queryset, many=True)
+        sleep(40)
         return Response(serializer.data)
     
     

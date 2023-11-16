@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ProductImage from "./ProductImage";
+import SpinnerModal from "./Spinner"
 import * as api from "../api/api_product"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCaretRight, faCaretLeft, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +21,7 @@ export default function ProductDetails({
     const [ProductImages, setProductImages] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [ImagesPerPage] = useState(1);
+    const [LoadingModal, setLoadingModal] = useState();
 
     
 
@@ -29,14 +31,15 @@ export default function ProductDetails({
     };
 
     const handlerShowPicture = () => {
+        setLoadingModal(true);
         setShowPictures(true);
-        
         api.ProductImages(id)
         .then((result) => {
             const ListOfImage = result.data.map(image => <ProductImage key={id} data={image}/>)
             setProductImages(ListOfImage)
         })
-
+        .catch((error) => console.log(error))
+        .finally(() => setLoadingModal(false));
         setBtn(<Button onClick={handlerHidePicture}><FontAwesomeIcon icon={faCaretLeft} /> Details</Button>)
     }
 
@@ -71,6 +74,7 @@ export default function ProductDetails({
 
 
     return (
+        
         <Modal
             show={show}
             onHide={close}
@@ -89,22 +93,24 @@ export default function ProductDetails({
                 <FontAwesomeIcon icon={faTimes} onClick={close} />
             </Modal.Header>
             <Modal.Body className="details-custom-color">
-                {ShowPictures ? <>
-                    <FontAwesomeIcon icon={faArrowLeft} onClick={previousImage}/>
-                    {currentImage} 
-                    <FontAwesomeIcon icon={faArrowRight} onClick={nextImage}/>
-                </>  :
+                {LoadingModal ? <SpinnerModal cname={'details-spinner'}/> : 
                 <>
-                    <h2 className="details-custom-titles details-custom-color">Description:</h2>
-                    <p>{desc}</p>
-                    <h2 className="details-custom-titles details-custom-color">Technicals:</h2>
-                    <p>{techDecs}</p>
-                    <h2 className="details-custom-titles details-custom-color">Kit included:</h2>
-                    <p>{kit}</p>
-                    <h2 className="details-custom-titles details-custom-color">Stock</h2>
-                    <p className="stock-items">{stock}</p>
-                </>
-                }
+                    {ShowPictures ? <>
+                        <FontAwesomeIcon icon={faArrowLeft} onClick={previousImage}/>
+                        {currentImage} 
+                        <FontAwesomeIcon icon={faArrowRight} onClick={nextImage}/>
+                    </>  :
+                    <>
+                        <h2 className="details-custom-titles details-custom-color">Description:</h2>
+                        <p>{desc}</p>
+                        <h2 className="details-custom-titles details-custom-color">Technicals:</h2>
+                        <p>{techDecs}</p>
+                        <h2 className="details-custom-titles details-custom-color">Kit included:</h2>
+                        <p>{kit}</p>
+                        <h2 className="details-custom-titles details-custom-color">Stock</h2>
+                        <p className="stock-items">{stock}</p>
+                    </>
+                }</>}
             </Modal.Body>
             <Modal.Footer>
                 {Btn}
