@@ -1,0 +1,23 @@
+version: '3.4'
+
+name: dschinni
+services:
+
+  web:
+    container_name: server
+    # image: cvstoilov/car_service
+    build:
+      dockerfile: ./back-end/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+      
+  client:
+    container_name: client
+    build:
+      dockerfile: ./front-end/Dockerfile
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - web
