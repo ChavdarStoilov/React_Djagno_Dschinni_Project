@@ -1162,3 +1162,23 @@ button {
 .stock-items {
     text-align: center;
 }
+
+.details-custom-color {
+    text-align: center;
+}
+.details-img {
+    width: 80%;
+}
+
+.fa-arrow-right {
+    margin-left: 25px;
+}
+
+.fa-arrow-left {
+    margin-right: 25px;
+}
+
+.fa-arrow-right, .fa-arrow-left  {
+    font-size: 30px;
+    cursor: pointer;
+}
