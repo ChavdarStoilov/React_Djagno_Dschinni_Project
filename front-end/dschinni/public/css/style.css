@@ -1146,3 +1146,7 @@ button {
 .buy-btn {
     cursor: pointer;
 }
+
+.no-item-msg {
+    margin: 5% 41%;
+}

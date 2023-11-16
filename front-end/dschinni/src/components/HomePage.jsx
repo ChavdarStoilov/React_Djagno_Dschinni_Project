@@ -1,7 +1,7 @@
 import OfferProducts from "./OfferProducts.jsx";
 import { useEffect, useState } from "react"
 import * as api from "../api/api_product.js"
-
+import logo from "../assets/logo.webp";
 import Transitions from "./Transition";
 
 export default function HomePage() {
@@ -17,9 +17,13 @@ export default function HomePage() {
 
     return (
         <Transitions>
-            <OfferProducts 
-                promoList={ListOfProducts.filter(product => product.promo_price)}  
-            />
+            {ListOfProducts ?
+                <OfferProducts 
+                    promoList={ListOfProducts.filter(product => product.promo_price)}  
+                />
+                :
+                <img src={logo} alt="logo" />
+            }
         </Transitions>
     );
 }

@@ -36,23 +36,27 @@ export default function Products({
                         </div>
                         <div className="product_section_2 layout_padding">
                             <div className="row">
-                                {!FetchFailed && ListOfProducts.map((product) => (
-                                    <ProductsItem
-                                        key={product.id}
-                                        id={product.id}
-                                        name={product.name}
-                                        price={
-                                            product.promo_price
-                                                ? product.promo_price
-                                                : product.normal_price
-                                        }
-                                        desc={product.description}
-                                        techDecs={product.technical_details}
-                                        kit={product.kit_scope}
-                                        stock={product.stock}
-                                        order={OrderProductHendler}
-                                    />
-                                ))}
+                                {ListOfProducts ?
+                                    !FetchFailed && ListOfProducts.map((product) => (
+                                        <ProductsItem
+                                            key={product.id}
+                                            id={product.id}
+                                            name={product.name}
+                                            price={
+                                                product.promo_price
+                                                    ? product.promo_price
+                                                    : product.normal_price
+                                            }
+                                            desc={product.description}
+                                            techDecs={product.technical_details}
+                                            kit={product.kit_scope}
+                                            stock={product.stock}
+                                            order={OrderProductHendler}
+                                        />
+                                    ))
+                                    :
+                                    <h2 className="no-item-msg">There not have items yet!</h2>
+                                }
                             </div>
                         </div>
                     </div>
