@@ -5,10 +5,9 @@ import Row from "react-bootstrap/Row";
 import SpinnerModal from "./Spinner";
 import * as api from "../api/auth_api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function RegisterModal({ close }) {
-    const [validated, setValidated] = useState(false);
     const [errorServer, setErrorServer] = useState(false);
     const [IsLoading, setIsLoading] = useState(false);
     const [successMsg, setSuccessMsg] = useState(null);
@@ -25,6 +24,7 @@ export default function RegisterModal({ close }) {
             new FormData(event.target)
         );
 
+        setErrorServer(false)
         setIsLoading(true);
         
         api.register({ username, email, password })
@@ -34,7 +34,6 @@ export default function RegisterModal({ close }) {
                         Object.values(result.data).map((key) => key)
                     );
                 } else if (result.status === 201) {
-                    console.log(errorServer);
                     setSuccessMsg(
                     <div className="success-msg-checkout">
                         <FontAwesomeIcon icon={faCheckCircle} className="success_msg" />
@@ -51,8 +50,10 @@ export default function RegisterModal({ close }) {
     return (
         <>
             <Form onSubmit={onSubmit} className="register-from">
+                <h1 className="form-custom-color user-modal-title">Register</h1>
+                <FontAwesomeIcon icon={faTimes} onClick={close} className="user-modal-title-close"/>
                 
-                {/* {errorServer && 
+                {errorServer && 
                     <ul>
                         {errorServer.map((error) => (
                             <li>
@@ -61,7 +62,7 @@ export default function RegisterModal({ close }) {
                         ))}
                     </ul>
                 }
-                 */}
+                
                 {IsLoading ? (
                     <SpinnerModal cname="register-loading" msg="Registration..." />
                 ) : !successMsg ? (

@@ -1172,6 +1172,7 @@ button {
 
 .fa-arrow-right {
     margin-left: 25px;
+    
 }
 
 .fa-arrow-left {
@@ -1181,4 +1182,16 @@ button {
 .fa-arrow-right, .fa-arrow-left  {
     font-size: 30px;
     cursor: pointer;
+}
+
+.user-modal-title {
+    font-size: 30px;
+    text-align: center;
+
+}
+
+.user-modal-title-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
 }

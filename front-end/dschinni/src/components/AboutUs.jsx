@@ -16,9 +16,6 @@ export default function About() {
                                         innovative designs, as well as its
                                         excellent performance.
                                     </p>
-                                    <div className="readmore_bt">
-                                        <a href="#">Read More</a>
-                                    </div>
                                 </div>
                             </div>
                             <div className="col-md-6 about_image">

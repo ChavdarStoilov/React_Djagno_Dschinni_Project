@@ -6,8 +6,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import FormGroup from "react-bootstrap/esm/FormGroup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function UserProfileModal({ show, close }) {
+export default function UserProfileModal({ close }) {
     const { user } = useContext(AuthContext);
     const [UserProfileData, setUserProfileData] = useState({});
     const [IsLoading, setIsLoading] = useState(false);
@@ -54,13 +56,15 @@ export default function UserProfileModal({ show, close }) {
         .catch(err => console.log(err))
     };
 
-    console.log(ErrorMsg);
     return (
         <>
             {IsLoading ? (
                 <SpinnerModal />
             ) : (
                 <Form onSubmit={onSubmit} className="login-form">
+                    <h1 className="form-custom-color user-modal-title">Profile</h1>
+                    <FontAwesomeIcon icon={faTimes} onClick={close} className="user-modal-title-close"/>
+
                     {SuccessMsg && <h2 className="success_msg">The update has been successfully!</h2>}
                     {ErrorMsg && (
                     <ul>
@@ -69,7 +73,7 @@ export default function UserProfileModal({ show, close }) {
                     )}
                     <FormGroup>
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="username">Username</Form.Label>
+                            <Form.Label htmlFor="username" className="form-custom-color">Username</Form.Label>
                             <Form.Control
                                 readOnly
                                 type="text"
@@ -80,7 +84,7 @@ export default function UserProfileModal({ show, close }) {
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="first_name">
+                            <Form.Label htmlFor="first_name" className="form-custom-color">
                                 First Name
                             </Form.Label>
                             <Form.Control
@@ -96,7 +100,7 @@ export default function UserProfileModal({ show, close }) {
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="last_name">
+                            <Form.Label htmlFor="last_name" className="form-custom-color">
                                 Last Name
                             </Form.Label>
                             <Form.Control
@@ -112,7 +116,7 @@ export default function UserProfileModal({ show, close }) {
                         </Form.Group>
 
                         <Form.Group className="mb-3">
-                            <Form.Label htmlFor="email">Email</Form.Label>
+                            <Form.Label htmlFor="email" className="form-custom-color">Email</Form.Label>
                             <Form.Control
                                 required
                                 type="email"

@@ -6,13 +6,14 @@ import * as api from "../api/auth_api";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
 import SpinnerModal from "./Spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function LoginModal({ close }) {
-    const [validated, setValidated] = useState(false);
     const [errorServer, setErrorServer] = useState();
     const { UserLoginHendler } = useContext(AuthContext);
     const [IsLoading, setIsLoading] = useState(false);
-    const [SuccessMsg, setSuccessMsg] = useState(false);
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -47,6 +48,8 @@ export default function LoginModal({ close }) {
     return (
         <>
             <Form onSubmit={onSubmit} className="login-form">
+                <h1 className="form-custom-color user-modal-title">Login</h1>
+                <FontAwesomeIcon icon={faTimes} onClick={close} className="user-modal-title-close"/>
                 {errorServer && <h2 className="error_msg">{errorServer}</h2>}
                 {IsLoading ? (
                     <SpinnerModal cname="login-loading" msg="Logging..." />
