@@ -1,6 +1,6 @@
 import Navigation from "./components/MainComponents/NavigationComponents/NavigationBar";
 import Products from "./components/ProductComponents/Products";
-import Contacts from "./components/MainComponents/Contacts";
+import Contacts from "./components/MainComponents/ContactsCompomrnts/Contacts";
 import { Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./components/MainComponents/HomePage";
 import { AnimatePresence } from "framer-motion";
