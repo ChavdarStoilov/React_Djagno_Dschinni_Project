@@ -14,7 +14,14 @@ export default function About() {
                                         Dschinni is a German hookah brand that
                                         is highly regarded for its unique and
                                         innovative designs, as well as its
-                                        excellent performance.
+                                        excellent performance. DSCHINNI is a
+                                        German brand, specialising in the
+                                        manufacture of hookahs and accessories.
+                                        Famous in France for models such as the
+                                        FLEX HYBRID and more recently the CLYDE
+                                        and BONNIE, DSCHINNI has become one of
+                                        the benchmark brands among professionals
+                                        and enthusiasts in just a short time.
                                     </p>
                                 </div>
                             </div>
