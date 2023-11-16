@@ -1,4 +1,4 @@
-from .models import Product, Inventory
+from .models import Product, Inventory, ProductImages
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -6,6 +6,13 @@ from .validators import CustomUniqueValidator
 from django.contrib.auth import get_user_model
 
 User_Model = get_user_model()
+
+
+class ProductImagesListSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model=ProductImages
+        fields='__all__'
 
 class ProductListSerializer(serializers.ModelSerializer):
     class Meta:

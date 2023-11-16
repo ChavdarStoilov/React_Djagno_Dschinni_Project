@@ -4,6 +4,7 @@ import ProductDetails from "./ProductDetails";
 export default function ProductsItem({
     id,
     name,
+    image,
     price,
     desc,
     techDecs,
@@ -27,6 +28,7 @@ export default function ProductsItem({
     return (
         <>
             {ShowDatails && <ProductDetails 
+                id={id}
                 show={handleShowDetailsModal} 
                 close={handleCloseDetailsModal} 
                 name={name}
@@ -40,7 +42,7 @@ export default function ProductsItem({
             <div className="col-lg-3 col-sm-6">
                 <div className="product_box">
                     <h4 className="bursh_text">{name}</h4>
-                    <img src={`images/${name}.webp`} className="image_1" />
+                    <img src={image} className="image_1" />
                     <div className="btn_main">
                         <div className="buy_bt">
                             <ul>

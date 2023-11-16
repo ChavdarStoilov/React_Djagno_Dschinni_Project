@@ -42,6 +42,7 @@ export default function Products({
                                             key={product.id}
                                             id={product.id}
                                             name={product.name}
+                                            image={product.image}
                                             price={
                                                 product.promo_price
                                                     ? product.promo_price

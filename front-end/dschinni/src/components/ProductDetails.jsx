@@ -1,10 +1,13 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import ProductImage from "./ProductImage";
+import * as api from "../api/api_product"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 export default function ProductDetails({
+    id,
     show,
     close,
     name,
@@ -14,6 +17,7 @@ export default function ProductDetails({
     stock,
 }) {
     const [ShowPictures, setShowPictures] = useState();
+    const [ProductImages, setProductImages] = useState([]);
 
     const handlerHidePicture = () => {
         setShowPictures(false)
@@ -22,12 +26,18 @@ export default function ProductDetails({
 
     const handlerShowPicture = () => {
         setShowPictures(true);
+        
+        api.ProductImages(id)
+        .then((result) => setProductImages(result.data))
+
         setBtn(<Button onClick={handlerHidePicture}><FontAwesomeIcon icon={faCaretLeft} /> Details</Button>)
     }
 
     const [Btn, setBtn] = useState(<Button onClick={handlerShowPicture}>Pictures <FontAwesomeIcon icon={faCaretRight} /></Button>);
     
     
+
+    console.log(ProductImages);
 
     return (
         <Modal
@@ -48,7 +58,7 @@ export default function ProductDetails({
                 <FontAwesomeIcon icon={faTimes} onClick={close} />
             </Modal.Header>
             <Modal.Body className="details-custom-color">
-                {ShowPictures ? <img src="" alt="" /> :
+                {ShowPictures ? ProductImages.map(image => <ProductImage key={image.id} data={image} />) :
                 <>
                     <h2 className="details-custom-titles details-custom-color">Description:</h2>
                     <p>{desc}</p>

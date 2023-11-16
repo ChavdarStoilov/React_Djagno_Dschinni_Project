@@ -1,8 +1,13 @@
 from django.contrib import admin
-from .models import Product, CustomerComment, ShopCart, Inventory, Entry
+from .models import Product, CustomerComment, ShopCart, Inventory, Entry, ProductImages
 # Register your models here.
 @admin.register(Product)
 class Product(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ProductImages)
+class ProductImagesAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(CustomerComment)

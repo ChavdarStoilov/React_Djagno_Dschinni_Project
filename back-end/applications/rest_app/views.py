@@ -1,6 +1,6 @@
-from .models import Product
+from .models import Product, ProductImages
 from .serializers import ProductListSerializer, LoginSerializer, RegisterUserSerializer, \
-    UserListSerializer, CheckOut
+    UserListSerializer, CheckOut, ProductImagesListSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework import views
@@ -30,6 +30,18 @@ class ListProduct(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
     permission_classes = (permissions.AllowAny,)
+    
+class ImageListProductView(generics.ListAPIView):
+    serializer_class = ProductImagesListSerializer
+    permission_classes = (permissions.AllowAny,)
+    queryset= ProductImages
+    
+    def list(self, request, *args, **kwargs):
+        queryset = ProductImages.objects.all().filter(product_id=kwargs['pk'])
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+    
     
 class LoginView(ObtainAuthToken):
 
