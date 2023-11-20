@@ -5,12 +5,6 @@ import * as api from "../../../api/mail_api";
 
 export default function MailForm() {
     const [FormMsg, setFormMsg] = useState();
-    const [inputFields, setInputFields] = useState({
-        name:"",
-        email: "",
-        subject: "",
-        message: null
-      });
 
     const sentEmailHandler = (e) => {
 
@@ -40,9 +34,7 @@ export default function MailForm() {
         if (!e.target.value){
             setFormMsg({status: 400, msg: `${e.target.placeholder} is empty`});
         }
-        else if (e.target.placeholder === "Email" && !"@" in e.target.value) {
-            setFormMsg({status: 400, msg: "Please enter a valid email address"});
-        }
+
     }
 
     return (
