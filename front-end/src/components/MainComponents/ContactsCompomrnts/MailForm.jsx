@@ -1,23 +1,48 @@
+
 import { useState } from "react";
 import styles from "./Contacts.module.css";
+import * as api from "../../../api/mail_api";
 
 export default function MailForm() {
-    const [FromMsg, setFromMsg] = useState();
-
+    const [FormMsg, setFormMsg] = useState();
+    const [inputFields, setInputFields] = useState({
+        name:"",
+        email: "",
+        subject: "",
+        message: null
+      });
 
     const sentEmailHandler = (e) => {
-        e.preventDefault();
-        const form = e.currentTarget;
 
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
+        e.preventDefault();
         const { name, email, subject, message } = Object.fromEntries(
             new FormData(e.target)
         );
 
-        
-        console.log(name, email, subject, message);
+        if (name === "" || email === "" || subject === "" || message === "") {
+            setFormMsg({status: 400, msg:'Please all fields, Thank you!'})
+        }
+        else{
+            api.sentEmail({ name, email, subject, message })
+            .then((result) => {
+                console.log(result);
+                setFormMsg({ status: result.status, msg: result.data });
+            
+
+            })
+            .catch((err) => console.log(err))
+        }
+
+    };
+
+    const CheckEmptyhandler = (e) => {
+
+        if (!e.target.value){
+            setFormMsg({status: 400, msg: `${e.target.placeholder} is empty`});
+        }
+        else if (e.target.placeholder === "Email" && !"@" in e.target.value) {
+            setFormMsg({status: 400, msg: "Please enter a valid email address"});
+        }
     }
 
     return (
@@ -26,16 +51,24 @@ export default function MailForm() {
                 <div
                     className={`${styles.contactwrap} ${styles.w100} ${styles.pmd5} ${styles.p4}`}
                 >
-                    <h3 className="mb-4">Contact Us</h3>
-                    <div id="form-message-warning" className="mb-4"></div>
-                    <div id="form-message-success" className="mb-4">
-                        Your message was sent, thank you!
-                    </div>
+                    <h3 className={styles.mb4}>Contact Us</h3>
+                    {FormMsg && (
+                        <>
+                            {FormMsg.status === 400 ? (
+                                <div className={`${styles.formMessageWarning} ${styles.mb4}`}>
+                                    {FormMsg.msg}
+                                </div>
+                            ) : (
+                                <div className={`${styles.formMessageSuccess} ${styles.mb4}`}>
+                                    {FormMsg.msg}
+                                </div>
+                            )}
+                        </>
+                    )}
                     <form
                         id="contactForm"
                         name="contactForm"
                         className={styles.contactForm}
-                        noValidate="novalidate"
                         onSubmit={sentEmailHandler}
                     >
                         <div className={styles.row}>
@@ -54,6 +87,7 @@ export default function MailForm() {
                                         id="name"
                                         placeholder="Name"
                                         required
+                                        onBlur={CheckEmptyhandler}
                                     />
                                 </div>
                             </div>
@@ -72,6 +106,7 @@ export default function MailForm() {
                                         id="email"
                                         placeholder="Email"
                                         required
+                                        onBlur={CheckEmptyhandler}
                                     />
                                 </div>
                             </div>
@@ -90,6 +125,8 @@ export default function MailForm() {
                                         id="subject"
                                         placeholder="Subject"
                                         required
+                                        onBlur={CheckEmptyhandler}
+
 
                                     />
                                 </div>
@@ -107,6 +144,8 @@ export default function MailForm() {
                                         rows="4"
                                         placeholder="Message"
                                         required
+                                        onBlur={CheckEmptyhandler}
+
 
                                     ></textarea>
                                 </div>
