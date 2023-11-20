@@ -1,7 +1,6 @@
 import OfferProducts from "../ProductComponents/OfferProducts";
 import { useEffect, useState } from "react"
 import * as api from "../../api/api_product.js"
-import logo from "../../assets/logo.webp";
 import Transitions from "../UtilsComponents/Transition.jsx";
 
 
@@ -18,6 +17,7 @@ export default function HomePage() {
 
     }, [])
 
+    
     return (
         <Transitions>
             {ListOfProducts ?
@@ -25,7 +25,7 @@ export default function HomePage() {
                     promoList={ListOfProducts.filter(product => product.promo_price)}  
                 />
                 :
-                <img src={logo} alt="logo" />
+                <h1>Welcome in Dschinni Shop!</h1>
             }
         </Transitions>
     );

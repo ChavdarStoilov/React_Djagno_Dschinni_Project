@@ -345,11 +345,19 @@ button {
 
 /* banner section start */
 
+.home_titel {
+    text-align: center;
+    color: #d7a644;
+    height: 80vh;
+    margin-top: 72px;
+    font-size: 54px;
+}
+
 .banner_section {
     width: 100%;
     background-image: url(../images/banner.webp);
     /* padding: 120px 0px 90px; */
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 .banner-inner {
