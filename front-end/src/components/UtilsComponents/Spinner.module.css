@@ -24,15 +24,6 @@
 }
 
 
-.successMsg_register {
-  text-align: center;
-  margin: 30% 10%;
-}
-
-.successMsgCheckout {
-  text-align: center;
-  margin: 20% 10%;
-}
 
 @keyframes spinner {
     0% {

@@ -35,7 +35,7 @@ export default function RegisterModal({ close }) {
                     );
                 } else if (result.status === 201) {
                     setSuccessMsg(
-                    <div className="success-msg-checkout">
+                    <div className="success-msg-register">
                         <FontAwesomeIcon icon={faCheckCircle} className="success_msg" />
                         <h1 className="success_msg-reg">Your registration was successfully!</h1>
                     </div>)

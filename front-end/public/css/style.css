@@ -1107,6 +1107,11 @@ button {
     margin: 20% 30%;
 }
 
+.success-msg-register {
+    text-align: center;
+    margin: 30% 10%;
+}
+
 .error-msg-checkout {
     text-align: center;
     margin: 30% 30%;
