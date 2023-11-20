@@ -10,13 +10,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CSRF_TRUSTED_ORIGINS = [
-    # 'http://127.0.0.1:5173',
-    'http://client:3000',
+    'http://127.0.0.1:5173',
+    # 'http://client:3000',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://client:3000'
-,
+    'http://127.0.0.1:5173',
+    # 'http://client:3000',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

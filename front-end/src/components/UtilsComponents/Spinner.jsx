@@ -5,7 +5,10 @@ export default function SpinnerModal({ cname, msg }) {
         <div className={
             cname === "detailsSpinner" ? styles.detailsSpinner + " " + styles.spinnerContainer : styles.spinnerContainer}>
             <div className={styles.loadingSpinner}></div>
-            <h1 className={cname === "loginLoading" ? styles.loginLoading: styles.registerLoading}>{msg}</h1>
+            <h1 className={
+                cname === "loginLoading" ? styles.loginLoading :
+                styles.successMsg_register 
+            }>{msg}</h1>
         </div>
     );
 }

@@ -64,7 +64,7 @@ export default function RegisterModal({ close }) {
                 }
                 
                 {IsLoading ? (
-                    <SpinnerModal cname="register-loading" msg="Registration..." />
+                    <SpinnerModal cname="register-loading" />
                 ) : !successMsg ? (
                     <>
                         <Form.Group className="mb-3">

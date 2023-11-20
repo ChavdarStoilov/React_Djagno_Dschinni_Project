@@ -10,7 +10,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth import get_user_model, login, logout
 from django.utils.translation import gettext_lazy as _
-# from time import sleep
+from time import sleep
 
 User_Model = get_user_model()
 
@@ -71,7 +71,7 @@ class UserCreateView(views.APIView):
                 token = Token.objects.create(user=user)
                 json = serializer.data
                 json['token'] = token.key
-                # sleep(20)
+                sleep(10)
                 
                 return Response(json, status=status.HTTP_201_CREATED)
 

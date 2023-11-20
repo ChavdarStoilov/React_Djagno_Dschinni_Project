@@ -16,11 +16,22 @@
 }
 
 
-.loginLoading, .registerLoading {
+.loginLoading {
   color: #ebad28;
   text-align: center;
   margin-top: 42px;
   margin-left: -38px;
+}
+
+
+.successMsg_register {
+  text-align: center;
+  margin: 30% 10%;
+}
+
+.successMsgCheckout {
+  text-align: center;
+  margin: 20% 10%;
 }
 
 @keyframes spinner {
