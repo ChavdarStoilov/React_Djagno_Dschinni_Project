@@ -11,6 +11,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth import get_user_model, login, logout
 from django.utils.translation import gettext_lazy as _
 from time import sleep
+from django.core.mail import send_mail
+
 
 User_Model = get_user_model()
 
@@ -30,6 +32,7 @@ class ListProduct(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
     permission_classes = (permissions.AllowAny,)
+    
     
 class ImageListProductView(generics.ListAPIView):
     serializer_class = ProductImagesListSerializer
@@ -105,3 +108,25 @@ class CheckOutView(generics.CreateAPIView):
             return super(CheckOutView, self).get_serializer(instance=instance, data=data, many=True, partial=partial)
         else:
             return super(CheckOutView, self).get_serializer(instance=instance, many=True, partial=partial)
+        
+        
+class SentEmailView(views.APIView):
+    permission_classes = (permissions.AllowAny,)
+    
+
+    def post(self, request, *args, **kwargs):
+        name = request.data['name']
+        email = request.data['email']
+        subject = request.data['subject']
+        message = request.data['message']
+        
+        if name and email and subject and message:
+            try:
+                # send_mail(subject, message, email, ["myrobotch@abv.bg"])
+                return Response("Your message was sent, Thank you!", status=status.HTTP_201_CREATED)
+            except Exception as ex:
+                return Response("Your message was not sent, Please try again. Thank you!", status=status.HTTP_400_BAD_REQUEST)
+        return Response("Please all fields, Thank you!", status=status.HTTP_400_BAD_REQUEST)
+        
+    # send_mail("It works!", "This will get sent through Mailgun",
+    #       "Anymail Sender <myrobotch@gmail.com>", ["myrobotch@gmail.com"])
