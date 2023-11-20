@@ -592,9 +592,12 @@ button {
     width: 80%;
     max-width: 80%;
 }
-.row {
+.row, .prodcut_row {
     align-items: center;
+}
+.prodcut_row {
     margin-bottom: 200px;
+
 }
 
 .table_row {

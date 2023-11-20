@@ -40,7 +40,7 @@ export default function Products({ ordering }) {
 
                 <div className="product_section layout_padding">
                     <div className="container">
-                        <div className="row">
+                        <div className="row prodcut_row">
                             <div className="col-sm-12">
                                 <h1 className="product_taital">Our Products</h1>
                             </div>

@@ -47,7 +47,7 @@ export default function ShoppingCartModal({ showCartModal, closeCartModal, order
                     setIsLoading(false);
                     setCartMesg(<div className="success-msg-checkout">
                         <FontAwesomeIcon icon={faCheckCircle} className="success_msg" />
-                        <h1 className="success_msg">Your order was submitted successfully!</h1>
+                        <h1 className="success_msg">Your order was submitted successfully! We will contact with you!</h1>
                     </div>)
                 }
                 else {
