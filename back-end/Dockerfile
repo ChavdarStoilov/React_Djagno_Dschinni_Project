@@ -12,4 +12,4 @@ COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
-COPY ./back-end /app/
+COPY ./React_Djagno_Dschinni_Project/back-end /app/
