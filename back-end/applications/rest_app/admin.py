@@ -1,6 +1,13 @@
 from django.contrib import admin
-from .models import Product, CustomerComment, ShopCart, Inventory, Entry, ProductImages
-# Register your models here.
+from .models import Product, CustomerComment, ShopCart, Inventory, \
+    Entry, ProductImages, ServerDelaySimulation
+
+
+@admin.register(ServerDelaySimulation)
+class ServerDelaySimulationAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Product)
 class Product(admin.ModelAdmin):
     pass

@@ -11,11 +11,10 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth import get_user_model, login, logout
 from django.utils.translation import gettext_lazy as _
 from time import sleep
-from django.core.mail import send_mail
-
+from .models import ServerDelaySimulation
 
 User_Model = get_user_model()
-
+deplay = ServerDelaySimulation.objects.all().first().delay
 
 
 class UserProfileView(generics.ListAPIView, generics.UpdateAPIView):
@@ -32,7 +31,7 @@ class ListProduct(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
     permission_classes = (permissions.AllowAny,)
-    
+
     
 class ImageListProductView(generics.ListAPIView):
     serializer_class = ProductImagesListSerializer
@@ -42,7 +41,7 @@ class ImageListProductView(generics.ListAPIView):
     def list(self, request, *args, **kwargs):
         queryset = ProductImages.objects.all().filter(product_id=kwargs['pk'])
         serializer = self.get_serializer(queryset, many=True)
-        # sleep(40)
+        sleep(deplay)
         return Response(serializer.data)
     
     
@@ -56,7 +55,8 @@ class LoginView(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         
         login(request, user)
-        # sleep(20)
+        sleep(deplay)
+
         return Response({
             'token':token.key,
             'user_id':user.pk,
@@ -68,14 +68,15 @@ class UserCreateView(views.APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format='json'):
         serializer = RegisterUserSerializer(data=request.data)
+        sleep(deplay)
         if serializer.is_valid():
             user = serializer.save()
             if user:
                 token = Token.objects.create(user=user)
                 json = serializer.data
                 json['token'] = token.key
-                sleep(10)
                 
+
                 return Response(json, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -119,7 +120,7 @@ class SentEmailView(views.APIView):
         email = request.data['email']
         subject = request.data['subject']
         message = request.data['message']
-        
+        sleep(deplay)
         if name and email and subject and message:
             try:
                 # send_mail(subject, message, email, ["myrobotch@abv.bg"])

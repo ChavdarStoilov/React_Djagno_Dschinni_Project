@@ -107,6 +107,7 @@ class Inventory(models.Model):
 
 
 class Entry(models.Model):
+    
     cart= models.ForeignKey(
         ShopCart, 
         related_name="entries", 
@@ -125,3 +126,8 @@ class Entry(models.Model):
         blank=True,
         null=True
         )
+    
+    
+class ServerDelaySimulation(models.Model):
+    
+    delay = models.PositiveSmallIntegerField()
