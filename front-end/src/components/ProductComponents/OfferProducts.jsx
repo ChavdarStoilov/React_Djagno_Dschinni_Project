@@ -1,7 +1,6 @@
 import PromoProductItem from "./PromoProductItem";
 
 export default function OfferProducts({ promoList }) {
-    console.log(promoList);
     return (
         <div className="banner_section layout_padding">
             <div

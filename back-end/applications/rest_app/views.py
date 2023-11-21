@@ -14,7 +14,6 @@ from time import sleep
 from .models import ServerDelaySimulation
 
 User_Model = get_user_model()
-deplay = ServerDelaySimulation.objects.all().first().delay
 
 
 class UserProfileView(generics.ListAPIView, generics.UpdateAPIView):
@@ -37,15 +36,18 @@ class ImageListProductView(generics.ListAPIView):
     serializer_class = ProductImagesListSerializer
     permission_classes = (permissions.AllowAny,)
     queryset= ProductImages
+    deplay = ServerDelaySimulation.objects.all().first().delay
+    
     
     def list(self, request, *args, **kwargs):
         queryset = ProductImages.objects.all().filter(product_id=kwargs['pk'])
         serializer = self.get_serializer(queryset, many=True)
-        sleep(deplay)
+        sleep(self.deplay)
         return Response(serializer.data)
     
     
 class LoginView(ObtainAuthToken):
+    deplay = ServerDelaySimulation.objects.all().first().delay
 
     def post(self, request, format=None):
         serializer = LoginSerializer(data=self.request.data,
@@ -55,7 +57,7 @@ class LoginView(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         
         login(request, user)
-        sleep(deplay)
+        sleep(self.deplay)
 
         return Response({
             'token':token.key,
@@ -65,10 +67,12 @@ class LoginView(ObtainAuthToken):
         })
     
 class UserCreateView(views.APIView):
+    deplay = ServerDelaySimulation.objects.all().first().delay
+    
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format='json'):
         serializer = RegisterUserSerializer(data=request.data)
-        sleep(deplay)
+        sleep(self.deplay)
         if serializer.is_valid():
             user = serializer.save()
             if user:
@@ -113,6 +117,7 @@ class CheckOutView(generics.CreateAPIView):
         
 class SentEmailView(views.APIView):
     permission_classes = (permissions.AllowAny,)
+    deplay = ServerDelaySimulation.objects.all().first().delay
     
 
     def post(self, request, *args, **kwargs):
@@ -120,7 +125,7 @@ class SentEmailView(views.APIView):
         email = request.data['email']
         subject = request.data['subject']
         message = request.data['message']
-        sleep(deplay)
+        sleep(self.deplay)
         if name and email and subject and message:
             try:
                 # send_mail(subject, message, email, ["myrobotch@abv.bg"])
