@@ -36,7 +36,7 @@ class ImageListProductView(generics.ListAPIView):
     serializer_class = ProductImagesListSerializer
     permission_classes = (permissions.AllowAny,)
     queryset= ProductImages
-    deplay = ServerDelaySimulation.objects.all().first().delay
+    delay = ServerDelaySimulation.objects.all().first().delay if ServerDelaySimulation.objects.all() else 0 
     
     
     def list(self, request, *args, **kwargs):
@@ -47,7 +47,7 @@ class ImageListProductView(generics.ListAPIView):
     
     
 class LoginView(ObtainAuthToken):
-    deplay = ServerDelaySimulation.objects.all().first().delay
+    delay = ServerDelaySimulation.objects.all().first().delay if ServerDelaySimulation.objects.all() else 0 
 
     def post(self, request, format=None):
         serializer = LoginSerializer(data=self.request.data,
@@ -67,7 +67,7 @@ class LoginView(ObtainAuthToken):
         })
     
 class UserCreateView(views.APIView):
-    deplay = ServerDelaySimulation.objects.all().first().delay
+    delay = ServerDelaySimulation.objects.all().first().delay if ServerDelaySimulation.objects.all() else 0 
     
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format='json'):
@@ -117,7 +117,7 @@ class CheckOutView(generics.CreateAPIView):
         
 class SentEmailView(views.APIView):
     permission_classes = (permissions.AllowAny,)
-    deplay = ServerDelaySimulation.objects.all().first().delay
+    delay = ServerDelaySimulation.objects.all().first().delay if ServerDelaySimulation.objects.all() else 0 
     
 
     def post(self, request, *args, **kwargs):
